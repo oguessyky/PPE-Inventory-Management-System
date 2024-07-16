@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Main {
@@ -7,5 +6,3 @@ public class Main {
         System.out.println("Hello, World!");
         String name = userInput.nextLine();
         System.out.println(name);
-    }
-}
