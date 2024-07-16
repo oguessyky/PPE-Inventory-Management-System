@@ -5,6 +5,7 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Hello, World!");
         String name = userInput.nextLine();
-        System.out.println(name);
+        System.out.println("Hi, " + name);
+        userInput.close();
     }
   }
