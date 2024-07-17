@@ -7,5 +7,9 @@ public class Main {
             String input = userInput.nextLine();
             System.out.println("You entered: " + input);
         }
+        int i = 0;
+        do{
+            System.out.println("try: " + ++i);
+        }while(i<10);
     }
 }
