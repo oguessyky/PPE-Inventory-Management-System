@@ -1,7 +1,0 @@
-public class Main{
-    public static void main{
-        Scanner userInput = new input(System.in);
-        System.out.println.nextLine("Input something: " + userInput);
-        userInput.close;
-    }
-}
