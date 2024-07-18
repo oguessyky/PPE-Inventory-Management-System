@@ -4,21 +4,21 @@ public class Main {
     public static void main(String[] args) {
         try (Scanner userInput = new Scanner(System.in)) {
             String input;
-            System.out.print("Input something: ");
             do { 
-                input = userInput.findInLine("(?=.*Try)(?=.*test).*");
-                if(input == null){
-                    userInput.nextLine();
-                    System.err.println("Something wrong\n");
-                    System.out.print("Input something: ");
-                    
+                System.out.print("Input your gmail: ");
+                //input = userInput.findInLine("(?=.*Try)(?=.*test).*");
+                //input = userInput.findInLine("^Try.*test.*");
+                input = userInput.nextLine().trim();
+                if (!input.matches("^[\\w.-]+@gmail\\.com$")) {
+                    System.err.println("Invalid email. Please try again.\n");
                 }
-            } while (input == null);
+            } while (!input.matches("^[\\w.-]+@gmail\\.com$"));
             System.out.println("You entered: " + input);
         }
+
         int i = 0;
-        do{
+        do {
             System.out.println("try: " + ++i);
-        }while(i<10);
+        } while (i < 10);
     }
 }
