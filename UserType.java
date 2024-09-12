@@ -1,3 +1,4 @@
-public class UserType {
-    
+public enum UserType {
+    Admin,
+    Staff;
 }
