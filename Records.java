@@ -55,7 +55,7 @@ public class Records {
             int quantity = Integer.parseInt(parameters[1]);
             TransactionType transactionType = parameters[2].equals("Distributed") ? TransactionType.Distributed : TransactionType.Received;
             Partner partner;
-            if (transactionType == transactionType.Distributed) 
+            if (transactionType == TransactionType.Distributed) 
                 partner = getHospital(parameters[3]);
             else 
                 partner = getSupplier(parameters[3]);
