@@ -1,4 +1,7 @@
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -55,14 +58,46 @@ public class Records {
             int quantity = Integer.parseInt(parameters[1]);
             TransactionType transactionType = parameters[2].equals("Distributed") ? TransactionType.Distributed : TransactionType.Received;
             Partner partner;
-            if (transactionType == TransactionType.Distributed) 
+            if (transactionType == TransactionType.Distributed)
                 partner = getHospital(parameters[3]);
-            else 
+            else
                 partner = getSupplier(parameters[3]);
             Date date = new Date(Integer.parseInt(parameters[4]));
             transactionList.add(new Transaction(item, quantity, transactionType, partner, date));
         }
         recordReader.close();
+    }
+
+    public static void readRecords() throws IOException {
+        File mainFolder = new File(".\\Records");
+        File user = new File(".\\Records\\user.txt");
+        File supplier = new File(".\\Records\\suppliers.txt");
+        File hospital = new File(".\\Records\\hospitals.txt");
+        File item = new File(".\\Records\\ppe.txt");
+        File transaction = new File(".\\Records\\transactions.txt");
+        if (!mainFolder.exists()) mainFolder.mkdirs();
+        if (user.exists()) readUsers(new Scanner(user));
+        else {
+            user.createNewFile();
+            /* GUI stuff */
+        }
+        if (supplier.exists()) readSuppliers(new Scanner(supplier));
+        else {
+            supplier.createNewFile();
+            /* GUI stuff */
+        }
+        if (hospital.exists()) readHospitals(new Scanner(hospital));
+        else {
+            hospital.createNewFile();
+            /* GUI stuff */
+        }
+        if (item.exists()) readItems(new Scanner(item));
+        else {
+            item.createNewFile();
+            /* GUI stuff */
+        }
+        if (transaction.exists()) readTransactions(new Scanner(transaction));
+        else transaction.createNewFile();
     }
 
     /* Filter, EVENTUALLY ADD OTHER PARAMETERS */
@@ -91,7 +126,14 @@ public class Records {
         return null;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        File b = new File(".\\Records");
+        b.mkdirs();
+        File c = new File(".\\Records\\test.txt");
+        b.createNewFile();
+        PrintWriter a = new PrintWriter(c);
+        a.print("12321");
+        a.close();
         readUsers(new Scanner("afsdawfa|adadaad|ADawdasas|Admin\nasd|afsdawfa|adadaad|ADawdasas"));
     }
 }
