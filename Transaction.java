@@ -1,5 +1,5 @@
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Transaction {
     /* attributes */
@@ -9,16 +9,24 @@ public class Transaction {
     private final int quantity;
     private final String transactionType;
     private final Partner partner;
-    private final LocalDate date;
+    private final Date date;
 
-    /* constructor */
-    public Transaction(Item item, int quantity, String transactionType, Partner partner, LocalDate date) {
-        transactionID = "tset"; /* do auto incrementing */
+    /* constructors */
+    public Transaction(Item item, int quantity, String transactionType, Partner partner, Date date) {
+        transactionID = String.format("T%05d",newTransactionID++);
         this.item = item;
         this.quantity = quantity;
         this.transactionType = transactionType;
         this.partner = partner;
         this.date = date;
+    }
+    public Transaction(Item item, int quantity, String transactionType, Partner partner) {
+        transactionID = String.format("T%05d",newTransactionID++);
+        this.item = item;
+        this.quantity = quantity;
+        this.transactionType = transactionType;
+        this.partner = partner;
+        date = new Date();
     }
 
     /* getters */
@@ -27,5 +35,14 @@ public class Transaction {
     public int getQuantity() { return quantity; }
     public String getTransactionType() { return transactionType; }
     public Partner getPartner() { return partner; }
-    public LocalDate getDate() { return date; }
+    public Date getDate() { return date; }
+
+    /* TESTING CODE */
+    public static void main(String[] args) {
+        Transaction a = new Transaction(new Item(null, null, null), 1, "a", new Supplier("a", "a", "a"), new Date());
+        System.out.println(a.getTransactionID());
+        Transaction b = new Transaction(new Item(null, null, null), 1, "a", new Supplier("a", "a", "a"));
+        System.out.println(b.getTransactionID());
+        System.out.println(b.date);
+    }
 }
