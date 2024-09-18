@@ -7,7 +7,7 @@ public class User {
     UserType userType;
 
     /* constructors */
-    public User(String userID, String name, String password, UserType userType) {   
+    public User(String userID, String name, String password, UserType userType) {
         this.userID = userID;
         this.name = name;
         this.password = password;

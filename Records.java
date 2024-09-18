@@ -8,11 +8,18 @@ import java.util.Scanner;
 
 public class Records {
     /* Storing records */
-    public static ArrayList<User> userList = new ArrayList<>();
-    public static ArrayList<Supplier> supplierList;
-    public static ArrayList<Hospital> hospitalList;
-    public static ArrayList<Item> itemList;
-    public static ArrayList<Transaction> transactionList;
+    private static ArrayList<User> userList = new ArrayList<>();
+    private static ArrayList<Supplier> supplierList;
+    private static ArrayList<Hospital> hospitalList;
+    private static ArrayList<Item> itemList;
+    private static ArrayList<Transaction> transactionList;
+
+    private static final File mainFolder = new File(".\\Records");
+    private static final File userFile = new File(".\\Records\\user.txt");
+    private static final File supplierFile = new File(".\\Records\\suppliers.txt");
+    private static final File hospitalFile = new File(".\\Records\\hospitals.txt");
+    private static final File itemFile = new File(".\\Records\\ppe.txt");
+    private static final File transactionFile = new File(".\\Records\\transactions.txt");
 
     /* Reading records from file */
     public static void readUsers(Scanner recordReader) {
@@ -69,35 +76,29 @@ public class Records {
     }
 
     public static void readRecords() throws IOException {
-        File mainFolder = new File(".\\Records");
-        File user = new File(".\\Records\\user.txt");
-        File supplier = new File(".\\Records\\suppliers.txt");
-        File hospital = new File(".\\Records\\hospitals.txt");
-        File item = new File(".\\Records\\ppe.txt");
-        File transaction = new File(".\\Records\\transactions.txt");
         if (!mainFolder.exists()) mainFolder.mkdirs();
-        if (user.exists()) readUsers(new Scanner(user));
+        if (userFile.exists()) readUsers(new Scanner(userFile));
         else {
-            user.createNewFile();
-            /* GUI stuff */
+            userFile.createNewFile();
+            /* Get first user data, GUI stuff */
         }
-        if (supplier.exists()) readSuppliers(new Scanner(supplier));
+        if (supplierFile.exists()) readSuppliers(new Scanner(supplierFile));
         else {
-            supplier.createNewFile();
-            /* GUI stuff */
+            supplierFile.createNewFile();
+            /* Get min 3 supplier data, GUI stuff */
         }
-        if (hospital.exists()) readHospitals(new Scanner(hospital));
+        if (hospitalFile.exists()) readHospitals(new Scanner(hospitalFile));
         else {
-            hospital.createNewFile();
-            /* GUI stuff */
+            hospitalFile.createNewFile();
+            /* Get min 3 hospital data, GUI stuff */
         }
-        if (item.exists()) readItems(new Scanner(item));
+        if (itemFile.exists()) readItems(new Scanner(itemFile));
         else {
-            item.createNewFile();
-            /* GUI stuff */
+            itemFile.createNewFile();
+            /* Get all item data, GUI stuff */
         }
-        if (transaction.exists()) readTransactions(new Scanner(transaction));
-        else transaction.createNewFile();
+        if (transactionFile.exists()) readTransactions(new Scanner(transactionFile));
+        else transactionFile.createNewFile();
     }
 
     /* Filter, EVENTUALLY ADD OTHER PARAMETERS */
@@ -130,10 +131,12 @@ public class Records {
         File b = new File(".\\Records");
         b.mkdirs();
         File c = new File(".\\Records\\test.txt");
-        b.createNewFile();
+
         PrintWriter a = new PrintWriter(c);
         a.print("12321");
         a.close();
         readUsers(new Scanner("afsdawfa|adadaad|ADawdasas|Admin\nasd|afsdawfa|adadaad|ADawdasas"));
+        User t = getUser("afsdawfa");
+        System.out.println(t.getName());
     }
 }

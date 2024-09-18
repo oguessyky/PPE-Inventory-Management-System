@@ -3,7 +3,7 @@ public class Item {
     private String itemCode, name;
     private Supplier supplier;
     private int quantity;
-    
+
     /* constructors */
     public Item(String itemCode, String name, Supplier supplier, int quantity) {
         this.itemCode = itemCode;
