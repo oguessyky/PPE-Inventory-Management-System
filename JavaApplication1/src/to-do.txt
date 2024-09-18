@@ -1,0 +1,44 @@
+User
+  - userID (pk) ✓
+  - name ✓
+  - password ✓
+  - userType (admin/staff) ✓ (considering using enum)
+- store in user.txt
+- admin
+  - add
+  - modify
+  - search
+  - delete users
+
+Inventory
+  - item code ✓
+  - supplier code ✓
+  - quantity (num of boxes) ✓
+- store in ppe.txt
+- creation only in first run (default quantity 100 ✓)
+- outputs:
+  - total quantity by item code asc
+  - all items < 25 boxes
+  - quantity of searched item
+  - track item received/distributed during a time frame (use item code (duh))
+    - include supplier/hospital code, quantity n date (duh)
+    - include total quantity grouped by supplier/hospital
+- 1 SUPPLIER PER ITEM (also kinda dumb) ✓
+
+Transaction
+  - item code ✓
+  - transaction type (receive/distribute) ✓
+  - supplier/hospital code ✓
+  - quantity ✓
+  - date-time ✓ (implemented current date as default value when adding transactions)
+- store in transactions.txt
+- update quantity after receive n distribution
+- quantity validation when distributing (show current inventory)
+
+Supplier
+- store in suppliers.txt
+- 3-4 suppliers ONLY (im ngl this is kinda a dumb design choice)
+
+Hospital
+- store in hospitals.txt
+- 3-4 hospitals ONLY (also kinda a dumb design choice)
