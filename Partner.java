@@ -1,7 +1,7 @@
 public abstract class Partner {
     /* attributes */
-    private final String partnerCode;
-    private String name, address;
+    protected final String partnerCode;
+    protected String name, address;
 
     /* constructor */
     public Partner(String partnerCode, String name, String address) {
