@@ -3,11 +3,15 @@
 public class User {
 
     /* entity attributes */
+    public enum Type {
+        Admin,
+        Staff;
+    }    
     private String userID, name, password;
-    UserType userType;
+    private Type userType;
 
     /* constructors */
-    public User(String userID, String name, String password, UserType userType) {
+    public User(String userID, String name, String password, Type userType) {
         this.userID = userID;
         this.name = name;
         this.password = password;
@@ -18,11 +22,11 @@ public class User {
     public String getUserID() { return userID; }
     public String getName() { return name; }
     public String getPassword() { return password; }
-    public UserType getUserType() { return userType; }
+    public Type getUserType() { return userType; }
 
     /* setters */
     public void setUserID(String userID) { this.userID = userID; }
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }
-    public void setUserType(UserType userType) { this.userType = userType; }
+    public void setUserType(Type userType) { this.userType = userType; }
 }

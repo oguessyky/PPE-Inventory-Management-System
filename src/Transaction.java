@@ -3,17 +3,21 @@ import java.util.Date;
 
 public class Transaction {
     /* attributes */
+    public enum Type {
+        Received,
+        Distributed;
+    }
     private static int newTransactionID = 1;
     private final String transactionID;
     private final Item item;
     private final int quantity;
-    private final TransactionType transactionType;
+    private final Type transactionType;
     private final Partner partner;
     private final Date date;
 
     /* constructors */
     /* when reading record */
-    public Transaction(Item item, int quantity, TransactionType transactionType, Partner partner, Date date) {
+    public Transaction(Item item, int quantity, Type transactionType, Partner partner, Date date) {
         transactionID = String.format("T%05d",newTransactionID++);
         this.item = item;
         this.quantity = quantity;
@@ -22,14 +26,14 @@ public class Transaction {
         this.date = date;
     }
     /* when recording new transactions */
-    public Transaction(Item item, int quantity, TransactionType transactionType, Partner partner) {
+    public Transaction(Item item, int quantity, Type transactionType, Partner partner) {
         transactionID = String.format("T%05d",newTransactionID++);
         this.item = item;
         this.quantity = quantity;
         this.transactionType = transactionType;
         this.partner = partner;
         date = new Date();
-        if (transactionType == TransactionType.Received)
+        if (transactionType == Type.Received)
             item.addQuantity(quantity);
         else
             item.removeQuantity(quantity);
@@ -39,15 +43,15 @@ public class Transaction {
     public String getTransactionID() { return transactionID; }
     public Item getItem() { return item; }
     public int getQuantity() { return quantity; }
-    public TransactionType getTransactionType() { return transactionType; }
+    public Type getTransactionType() { return transactionType; }
     public Partner getPartner() { return partner; }
     public Date getDate() { return date; }
 
     /* TESTING CODE */
     public static void main(String[] args) {
-        Transaction a = new Transaction(new Item(null, null, null), 1, TransactionType.Received, new Supplier("a", "a", "a"), new Date());
+        Transaction a = new Transaction(new Item(null, null, null), 1, Type.Received, new Supplier("a", "a", "a"), new Date());
         System.out.println(a.getTransactionID());
-        Transaction b = new Transaction(new Item(null, null, null), 1, TransactionType.Distributed, new Supplier("a", "a", "a"));
+        Transaction b = new Transaction(new Item(null, null, null), 1, Type.Distributed, new Supplier("a", "a", "a"));
         System.out.println(b.getPartner().getPartnerCode());
         System.out.println(b.date);
     }
