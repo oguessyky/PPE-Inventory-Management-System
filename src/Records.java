@@ -80,7 +80,7 @@ public class Records {
             }
         }
     }
-    public static void readRecords() throws IOException {
+    public static void readRecords() throws FileNotFoundException {
         if (!MAIN_FOLDER.exists()) MAIN_FOLDER.mkdirs();
         if (USER_FILE.exists()) readUsers();
         if (SUPPLIER_FILE.exists()) readSuppliers();
