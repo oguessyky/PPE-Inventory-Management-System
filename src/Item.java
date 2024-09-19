@@ -14,10 +14,11 @@ public class Item {
     public static final Comparator<Item> QuantityComparator = Comparator.comparing(Item::getQuantity);
 
     /* Predicates for filtering */
-    public static final Predicate<Item> NameContains(String s) { return (item -> item.getName().contains(s)); }
-    public static final Predicate<Item> WithMinQuantity(int quantity) { return (item -> item.getQuantity() >= quantity); }
-    public static final Predicate<Item> WithMaxQuantity(int quantity) { return (item -> item.getQuantity() <= quantity); }
-    public static final Predicate<Item> WithQuantityBetween(int minQuantity, int maxQuantity) { return (item -> (minQuantity <= item.getQuantity() && item.getQuantity() <= maxQuantity)); }
+    public static final Predicate<Item> NameContains(String s) { return (item -> item.name.contains(s)); }
+    public static final Predicate<Item> WithMinQuantity(int quantity) { return (item -> item.quantity >= quantity); }
+    public static final Predicate<Item> WithMaxQuantity(int quantity) { return (item -> item.quantity <= quantity); }
+    public static final Predicate<Item> WithQuantityBetween(int minQuantity, int maxQuantity) { return (item -> (minQuantity <= item.quantity && item.quantity <= maxQuantity)); }
+    public static final Predicate<Item> WithSupplier(Supplier supplier) { return (item -> item.supplier == supplier); }
 
     /* constructors */
     public Item(String itemCode, String name, Supplier supplier, int quantity) {

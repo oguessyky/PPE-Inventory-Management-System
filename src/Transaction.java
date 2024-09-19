@@ -1,6 +1,7 @@
 
 import java.util.Comparator;
 import java.util.Date;
+import java.util.function.Predicate;
 
 public class Transaction {
     /* attributes */
@@ -23,6 +24,17 @@ public class Transaction {
     public static final Comparator<Transaction> TypeComparator = Comparator.comparing(Transaction::getTransactionType);
     public static final Comparator<Transaction> PartnerComparator = Comparator.comparing(Transaction::getPartner,Partner.CodeComparator);
     public static final Comparator<Transaction> DateComparator = Comparator.comparing(Transaction::getDate);
+
+    /* Predicates for filtering */
+    public static final Predicate<Transaction> WithMinQuantity(int quantity) { return (transaction -> transaction.quantity >= quantity); }
+    public static final Predicate<Transaction> WithMaxQuantity(int quantity) { return (transaction -> transaction.quantity <= quantity); }
+    public static final Predicate<Transaction> WithQuantityBetween(int minQuantity, int maxQuantity) { return (transaction -> (minQuantity <= transaction.quantity && transaction.quantity <= maxQuantity)); }
+    public static final Predicate<Transaction> WithPartner(Partner partner) { return (transaction -> transaction.partner == partner); }
+    public static final Predicate<Transaction> WithItem(Item item) { return (transaction -> transaction.item == item); }
+    public static final Predicate<Transaction> WithType(Type transactionType) { return (transaction -> transaction.transactionType == transactionType); }
+    public static final Predicate<Transaction> WithDateAfter(Date date) { return (transaction -> transaction.date.after(date)); }
+    public static final Predicate<Transaction> WithDateBefore(Date date) { return (transaction -> transaction.date.before(date)); }
+    public static final Predicate<Transaction> WithDateBetween(Date dateAfter, Date dateBefore) { return (transaction -> transaction.date.after(dateAfter) && transaction.date.before(dateBefore)); }
 
     /* constructors */
     /* when reading record */

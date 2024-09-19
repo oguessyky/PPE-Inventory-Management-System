@@ -11,8 +11,8 @@ public abstract class Partner {
     public static final Comparator<Partner> AddressComparator = Comparator.comparing(Partner::getAddress);
 
     /* Predicates for filtering */
-    public static final Predicate<Partner> NameContains(String s) { return (partner -> partner.getName().contains(s)); }
-    public static final Predicate<Partner> AddressContains(String s) { return (partner -> partner.getAddress().contains(s)); }
+    public static final Predicate<Partner> NameContains(String s) { return (partner -> partner.name.contains(s)); }
+    public static final Predicate<Partner> AddressContains(String s) { return (partner -> partner.address.contains(s)); }
 
     /* constructor */
     public Partner(String partnerCode, String name, String address) {
