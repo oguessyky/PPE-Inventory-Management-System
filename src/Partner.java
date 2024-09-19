@@ -18,4 +18,9 @@ public abstract class Partner {
     /* setters */
     public void setName(String name) { this.name = name; }
     public void setAddress(String address) { this.address = address; }
+
+    @Override
+    public String toString() {
+        return String.format("%s|%s|%s", partnerCode, name, address);
+    }
 }

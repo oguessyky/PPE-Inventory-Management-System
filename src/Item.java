@@ -32,4 +32,9 @@ public class Item {
     /* quantity modifiers */
     public void addQuantity(int quantity) { this.quantity += quantity; }
     public void removeQuantity(int quantity) { this.quantity -= quantity; }
+
+    @Override
+    public String toString() {
+        return String.format("%s|%s|%s|%d", itemCode, name, supplier.getPartnerCode(), quantity);
+    }
 }

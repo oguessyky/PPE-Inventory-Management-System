@@ -1,12 +1,10 @@
-
-
 public class User {
 
     /* entity attributes */
     public enum Type {
         Admin,
         Staff;
-    }    
+    }
     private String userID, name, password;
     private Type userType;
 
@@ -29,4 +27,9 @@ public class User {
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }
     public void setUserType(Type userType) { this.userType = userType; }
+
+    @Override
+    public String toString() {
+        return String.format("%s|%s|%s|%s", userID, name, password, userType);
+    }
 }

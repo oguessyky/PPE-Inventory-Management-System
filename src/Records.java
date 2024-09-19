@@ -1,11 +1,12 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
-
+import java.util.function.Predicate;
 public class Records {
     /* Storing records */
     private static final ArrayList<User> userList = new ArrayList<>();
@@ -28,7 +29,7 @@ public class Records {
         try (Scanner recordReader = new Scanner(USER_FILE)) {
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[|]");
-                User.Type userType = parameters[3].equals("Admin") ? User.Type.Admin : User.Type.Staff;
+                User.Type userType = User.Type.valueOf(parameters[3]);
                 userList.add(new User(parameters[0],parameters[1],parameters[2],userType));
             }
         }
@@ -69,7 +70,7 @@ public class Records {
                 parameters = recordReader.nextLine().split("[|]");
                 Item item = getItem(parameters[0]);
                 int quantity = Integer.parseInt(parameters[1]);
-                Transaction.Type transactionType = parameters[2].equals("Distributed") ? Transaction.Type.Distributed : Transaction.Type.Received;
+                Transaction.Type transactionType = Transaction.Type.valueOf(parameters[2]);
                 Partner partner;
                 if (transactionType == Transaction.Type.Distributed)
                     partner = getHospital(parameters[3]);
@@ -80,16 +81,140 @@ public class Records {
             }
         }
     }
-    public static void readRecords() throws FileNotFoundException {
-        if (!MAIN_FOLDER.exists()) MAIN_FOLDER.mkdirs();
-        if (USER_FILE.exists()) readUsers();
-        if (SUPPLIER_FILE.exists()) readSuppliers();
-        if (HOSPITAL_FILE.exists()) readHospitals();
-        if (ITEM_FILE.exists()) readItems();
-        if (TRANSACTION_FILE.exists()) readTransactions();
+    public static void readRecords() {
+        try { readUsers(); } catch (FileNotFoundException e) {}
+        try { readSuppliers(); } catch (FileNotFoundException e) {}
+        try { readHospitals(); } catch (FileNotFoundException e) {}
+        try { readItems(); } catch (FileNotFoundException e) {}
+        try { readTransactions(); } catch (FileNotFoundException e) {}
     }
 
-    /* Filter, EVENTUALLY ADD OTHER PARAMETERS */
+    /* Writing records into file */
+    private static void updateUsers() throws FileNotFoundException {
+        try (PrintWriter recordWriter = new PrintWriter(USER_FILE)) {
+            userList.forEach(user -> recordWriter.println(user));
+        }
+    }
+    private static void updateSuppliers() throws FileNotFoundException {
+        try (PrintWriter recordWriter = new PrintWriter(SUPPLIER_FILE)) {
+            supplierList.forEach(supplier -> recordWriter.println(supplier));
+        }
+    }
+    private static void updateHospitals() throws FileNotFoundException {
+        try (PrintWriter recordWriter = new PrintWriter(HOSPITAL_FILE)) {
+            hospitalList.forEach(hospital -> recordWriter.println(hospital));
+        }
+    }
+    private static void updateItems() throws FileNotFoundException {
+        try (PrintWriter recordWriter = new PrintWriter(ITEM_FILE)) {
+            itemList.forEach(item -> recordWriter.println(item));
+        }
+    }
+    private static void updateTransactions() throws FileNotFoundException {
+        try (PrintWriter recordWriter = new PrintWriter(TRANSACTION_FILE)) {
+            transactionList.forEach(transaction -> recordWriter.println(transaction));
+        }
+    }
+    public static void updateRecords() {
+        if (!MAIN_FOLDER.exists()) MAIN_FOLDER.mkdirs();
+        try { updateUsers(); } catch (FileNotFoundException e) {}
+        try { updateSuppliers(); } catch (FileNotFoundException e) {}
+        try { updateHospitals(); } catch (FileNotFoundException e) {}
+        try { updateItems(); } catch (FileNotFoundException e) {}
+        try { updateTransactions(); } catch (FileNotFoundException e) {}
+    }
+
+    /* Getters, filters and sorters */
+    public static ArrayList<User> getUserList() { return userList; }
+    public static ArrayList<User> getUserList(Comparator<User> sorter) {
+        ArrayList<User> outputList = new ArrayList<>(userList);
+        outputList.sort(sorter);
+        return outputList;
+    }
+    public static ArrayList<User> getUserList(Predicate<User> filter) {
+        ArrayList<User> outputList = new ArrayList<>(userList);
+        outputList.removeIf(Predicate.not(filter));
+        return outputList;
+    }
+    public static ArrayList<User> getUserList(Predicate<User> filter, Comparator<User> sorter) {
+        ArrayList<User> outputList = new ArrayList<>(userList);
+        outputList.removeIf(Predicate.not(filter));
+        outputList.sort(sorter);
+        return outputList;
+    }
+
+    public static ArrayList<Supplier> getSupplierList() { return supplierList; }
+    public static ArrayList<Supplier> getSupplierList(Comparator<Supplier> sorter) {
+        ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
+        outputList.sort(sorter);
+        return outputList;
+    }
+    public static ArrayList<Supplier> getSupplierList(Predicate<Supplier> filter) {
+        ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
+        outputList.removeIf(Predicate.not(filter));
+        return outputList;
+    }
+    public static ArrayList<Supplier> getSupplierList(Predicate<Supplier> filter, Comparator<Supplier> sorter) {
+        ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
+        outputList.removeIf(Predicate.not(filter));
+        outputList.sort(sorter);
+        return outputList;
+    }
+
+    public static ArrayList<Hospital> getHospitalList() { return hospitalList; }
+    public static ArrayList<Hospital> getHospitalList(Comparator<Hospital> sorter) {
+        ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
+        outputList.sort(sorter);
+        return outputList;
+    }
+    public static ArrayList<Hospital> getHospitalList(Predicate<Hospital> filter) {
+        ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
+        outputList.removeIf(Predicate.not(filter));
+        return outputList;
+    }
+    public static ArrayList<Hospital> getHospitalList(Predicate<Hospital> filter, Comparator<Hospital> sorter) {
+        ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
+        outputList.removeIf(Predicate.not(filter));
+        outputList.sort(sorter);
+        return outputList;
+    }
+
+    public static ArrayList<Item> getItemList() { return itemList; }
+    public static ArrayList<Item> getItemList(Comparator<Item> sorter) {
+        ArrayList<Item> outputList = new ArrayList<>(itemList);
+        outputList.sort(sorter);
+        return outputList;
+    }
+    public static ArrayList<Item> getItemList(Predicate<Item> filter) {
+        ArrayList<Item> outputList = new ArrayList<>(itemList);
+        outputList.removeIf(Predicate.not(filter));
+        return outputList;
+    }
+    public static ArrayList<Item> getItemList(Predicate<Item> filter, Comparator<Item> sorter) {
+        ArrayList<Item> outputList = new ArrayList<>(itemList);
+        outputList.removeIf(Predicate.not(filter));
+        outputList.sort(sorter);
+        return outputList;
+    }
+
+    public static ArrayList<Transaction> getTransactionList() { return transactionList; }
+    public static ArrayList<Transaction> getTransactionList(Comparator<Transaction> sorter) {
+        ArrayList<Transaction> outputList = new ArrayList<>(transactionList);
+        outputList.sort(sorter);
+        return outputList;
+    }
+    public static ArrayList<Transaction> getTransactionList(Predicate<Transaction> filter) {
+        ArrayList<Transaction> outputList = new ArrayList<>(transactionList);
+        outputList.removeIf(Predicate.not(filter));
+        return outputList;
+    }
+    public static ArrayList<Transaction> getTransactionList(Predicate<Transaction> filter, Comparator<Transaction> sorter) {
+        ArrayList<Transaction> outputList = new ArrayList<>(transactionList);
+        outputList.removeIf(Predicate.not(filter));
+        outputList.sort(sorter);
+        return outputList;
+    }
+
     public static User getUser(String userID) {
         for (User user : userList)
             if (user.getUserID().equals(userID))
@@ -121,7 +246,17 @@ public class Records {
         return null;
     }
 
-    public static void main(String[] args) throws IOException {
+    /* Adding records */
+    public static void addUser(User user) { userList.add(user); }
+    public static void addSupplier(Supplier supplier) { supplierList.add(supplier); }
+    public static void addHospital(Hospital hospital) { hospitalList.add(hospital); }
+    public static void addTransaction(Transaction transaction) { transactionList.add(transaction); }
+    public static void addItem(Item item) { itemList.add(item); }
+
+    /* Deleting records */
+    public static void deleteUser(User user) { userList.remove(user); }
+
+    public static void main(String[] args) {
         /* Main code (throw this in some relevant class (GUI) instead) */
         readRecords();
         if (userList.isEmpty()) {
@@ -137,20 +272,6 @@ public class Records {
         /* Get all item data, GUI stuff */
         if (true) {
         }
-
-
-        /* ignore this
-
-        File b = new File(".\\Records");
-        b.mkdirs();
-        File c = new File(".\\Records\\test.txt");
-
-        PrintWriter a = new PrintWriter(c);
-        a.print("12321");
-        a.close();
-        readUsers(new Scanner("afsdawfa|adadaad|ADawdasas|Admin\nasd|afsdawfa|adadaad|ADawdasas"));
-        User t = getUser("afsdawfa");
-        System.out.println(t.getName());
-        */
+        updateRecords();
     }
 }

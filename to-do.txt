@@ -3,7 +3,7 @@ User
   - name ✓
   - password ✓
   - userType (admin/staff) ✓ (considering using enum)
-- store in user.txt
+- store in user.txt ✓
 - admin
   - add
   - modify
@@ -14,7 +14,7 @@ Inventory
   - item code ✓
   - supplier code ✓
   - quantity (num of boxes) ✓
-- store in ppe.txt
+- store in ppe.txt ✓
 - creation only in first run (default quantity 100 ✓)
 - outputs:
   - total quantity by item code asc
@@ -38,14 +38,14 @@ Transaction
   - supplier/hospital code ✓
   - quantity ✓
   - date-time ✓ (implemented current date as default value when adding transactions)
-- store in transactions.txt
-- update quantity after receive n distribution
+- store in transactions.txt ✓
+- update quantity after receive n distribution ✓
 - quantity validation when distributing (show current inventory)
 
 Supplier
-- store in suppliers.txt
-- 3-4 suppliers ONLY (im ngl this is kinda a dumb design choice)
+- store in suppliers.txt ✓
+- min 3-4 suppliers
 
 Hospital
-- store in hospitals.txt
-- 3-4 hospitals ONLY (also kinda a dumb design choice)
+- store in hospitals.txt ✓
+- min 3-4 hospitals

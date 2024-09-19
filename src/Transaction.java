@@ -47,12 +47,17 @@ public class Transaction {
     public Partner getPartner() { return partner; }
     public Date getDate() { return date; }
 
+    @Override
+    public String toString() {
+        return String.format("%s|%d|%s|%s|%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
+    }
+
     /* TESTING CODE */
     public static void main(String[] args) {
         Transaction a = new Transaction(new Item(null, null, null), 1, Type.Received, new Supplier("a", "a", "a"), new Date());
         System.out.println(a.getTransactionID());
         Transaction b = new Transaction(new Item(null, null, null), 1, Type.Distributed, new Supplier("a", "a", "a"));
         System.out.println(b.getPartner().getPartnerCode());
-        System.out.println(b.date);
+        System.out.println(b);
     }
 }
