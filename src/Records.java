@@ -272,6 +272,7 @@ public class Records {
         /* Get all item data, GUI stuff */
         if (true) {
         }
+        userList.forEach(System.out::println);
         updateRecords();
     }
 }

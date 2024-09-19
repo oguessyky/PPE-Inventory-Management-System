@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         try (Scanner userInput = new Scanner(System.in)) {
             String input;
-            do { 
+            do {
                 System.out.print("Input your gmail: ");
                 //input = userInput.findInLine("(?=.*Try)(?=.*test).*");
                 //input = userInput.findInLine("^Try.*test.*");

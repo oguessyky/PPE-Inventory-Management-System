@@ -1,8 +1,23 @@
+import java.util.Comparator;
+import java.util.function.Predicate;
+
 public class Item {
     /* attributes */
     private String itemCode, name;
     private Supplier supplier;
     private int quantity;
+
+    /* Comparators for sorting */
+    public static final Comparator<Item> CodeComparator = Comparator.comparing(Item::getItemCode);
+    public static final Comparator<Item> NameComparator = Comparator.comparing(Item::getName);
+    public static final Comparator<Item> SupplierComparator = Comparator.comparing(Item::getSupplier,Supplier.CodeComparator);
+    public static final Comparator<Item> QuantityComparator = Comparator.comparing(Item::getQuantity);
+
+    /* Predicates for filtering */
+    public static final Predicate<Item> NameContains(String s) { return (item -> item.getName().contains(s)); }
+    public static final Predicate<Item> WithMinQuantity(int quantity) { return (item -> item.getQuantity() >= quantity); }
+    public static final Predicate<Item> WithMaxQuantity(int quantity) { return (item -> item.getQuantity() <= quantity); }
+    public static final Predicate<Item> WithQuantityBetween(int minQuantity, int maxQuantity) { return (item -> (minQuantity <= item.getQuantity() && item.getQuantity() <= maxQuantity)); }
 
     /* constructors */
     public Item(String itemCode, String name, Supplier supplier, int quantity) {

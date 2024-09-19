@@ -1,3 +1,6 @@
+
+import java.util.Comparator;
+import java.util.function.Predicate;
 public class User {
 
     /* entity attributes */
@@ -7,6 +10,13 @@ public class User {
     }
     private String userID, name, password;
     private Type userType;
+
+    /* Comparators for sorting */
+    public static final Comparator<User> IDComparator = Comparator.comparing(User::getUserID);
+    public static final Comparator<User> NameComparator = Comparator.comparing(User::getName);
+
+    /* Predicates for filtering */
+    public static final Predicate<User> NameContains(String s) { return (user -> user.getName().contains(s)); }
 
     /* constructors */
     public User(String userID, String name, String password, Type userType) {

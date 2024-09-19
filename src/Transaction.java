@@ -1,4 +1,5 @@
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Transaction {
@@ -14,6 +15,14 @@ public class Transaction {
     private final Type transactionType;
     private final Partner partner;
     private final Date date;
+
+    /* Comparators for sorting */
+    public static final Comparator<Transaction> IDComparator = Comparator.comparing(Transaction::getTransactionID);
+    public static final Comparator<Transaction> ItemComparator = Comparator.comparing(Transaction::getItem,Item.CodeComparator);
+    public static final Comparator<Transaction> QuantityComparator = Comparator.comparing(Transaction::getQuantity);
+    public static final Comparator<Transaction> TypeComparator = Comparator.comparing(Transaction::getTransactionType);
+    public static final Comparator<Transaction> PartnerComparator = Comparator.comparing(Transaction::getPartner,Partner.CodeComparator);
+    public static final Comparator<Transaction> DateComparator = Comparator.comparing(Transaction::getDate);
 
     /* constructors */
     /* when reading record */
@@ -50,14 +59,5 @@ public class Transaction {
     @Override
     public String toString() {
         return String.format("%s|%d|%s|%s|%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
-    }
-
-    /* TESTING CODE */
-    public static void main(String[] args) {
-        Transaction a = new Transaction(new Item(null, null, null), 1, Type.Received, new Supplier("a", "a", "a"), new Date());
-        System.out.println(a.getTransactionID());
-        Transaction b = new Transaction(new Item(null, null, null), 1, Type.Distributed, new Supplier("a", "a", "a"));
-        System.out.println(b.getPartner().getPartnerCode());
-        System.out.println(b);
     }
 }
