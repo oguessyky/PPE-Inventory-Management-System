@@ -83,27 +83,10 @@ public class Records {
     public static void readRecords() throws IOException {
         if (!MAIN_FOLDER.exists()) MAIN_FOLDER.mkdirs();
         if (USER_FILE.exists()) readUsers();
-        else {
-            USER_FILE.createNewFile();
-            /* Get first user data, GUI stuff */
-        }
         if (SUPPLIER_FILE.exists()) readSuppliers();
-        else {
-            SUPPLIER_FILE.createNewFile();
-            /* Get min 3 supplier data, GUI stuff */
-        }
         if (HOSPITAL_FILE.exists()) readHospitals();
-        else {
-            HOSPITAL_FILE.createNewFile();
-            /* Get min 3 hospital data, GUI stuff */
-        }
         if (ITEM_FILE.exists()) readItems();
-        else {
-            ITEM_FILE.createNewFile();
-            /* Get all item data, GUI stuff */
-        }
         if (TRANSACTION_FILE.exists()) readTransactions();
-        else TRANSACTION_FILE.createNewFile();
     }
 
     /* Filter, EVENTUALLY ADD OTHER PARAMETERS */
