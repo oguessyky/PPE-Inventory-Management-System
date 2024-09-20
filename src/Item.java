@@ -5,7 +5,7 @@ public class Item {
     /* attributes */
     private String itemCode, name;
     private Supplier supplier;
-    private int quantity;
+    private int quantity = 100;
 
     /* Comparators for sorting */
     public static final Comparator<Item> CodeComparator = Comparator.comparing(Item::getItemCode);
@@ -31,7 +31,6 @@ public class Item {
         this.itemCode = itemCode;
         this.name = name;
         this.supplier = supplier;
-        this.quantity = 100;
     }
 
     /* getters */

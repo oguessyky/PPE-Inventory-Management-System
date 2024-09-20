@@ -2,6 +2,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 public abstract class Partner {
     /* attributes */
+    protected static int newPartnerCode;
     protected final String partnerCode;
     protected String name, address;
 
@@ -15,8 +16,8 @@ public abstract class Partner {
     public static final Predicate<Partner> AddressContains(String s) { return (partner -> partner.address.contains(s)); }
 
     /* constructor */
-    public Partner(String partnerCode, String name, String address) {
-        this.partnerCode = partnerCode;
+    public Partner(String partnerCodeFormat, String name, String address) {
+        this.partnerCode = String.format(partnerCodeFormat,newPartnerCode++);
         this.name = name;
         this.address = address;
     }

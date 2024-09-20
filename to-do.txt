@@ -1,3 +1,5 @@
+Requirements (as per assignment details)
+
 User
   - userID (pk) ✓
   - name ✓
@@ -49,3 +51,34 @@ Supplier
 Hospital
 - store in hospitals.txt ✓
 - min 3-4 hospitals
+
+---------------------------------------------------------------------------------------
+
+GUI to-do
+
+Login
+
+Admin Page (inherit Staff Page)
+- User management
+  - list (with filter & sort, default no filter order by name asc)
+  - add
+  - delete
+  - modify
+- Supplier management
+  - list (with filter & sort, default non-deprecated order by supplier code asc)
+  - add
+  - modify
+  - deprecate
+- Hospital management
+  - list (with filter & sort, default non-deprecated order by supplier code asc)
+  - add
+  - modify
+  - deprecate
+
+Staff Page
+- Profile update
+- Inventory management
+  - list (with filter & sort, default no filter order by quantity, item code asc)
+  - receive
+  - distribute
+- Logout

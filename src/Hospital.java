@@ -1,5 +1,5 @@
 public class Hospital extends Partner {
-    public Hospital(String hospitalCode, String name, String address) {
-        super(hospitalCode, name, address);
+    public Hospital(String name, String address) {
+        super("H%03d", name, address);
     }
 }

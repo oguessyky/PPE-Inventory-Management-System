@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 public class Records {
+
     /* Storing records */
     private static final ArrayList<User> userList = new ArrayList<>();
     private static final ArrayList<Supplier> supplierList = new ArrayList<>();
@@ -39,7 +40,7 @@ public class Records {
         try (Scanner recordReader = new Scanner(SUPPLIER_FILE)) {
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[|]");
-                supplierList.add(new Supplier(parameters[0],parameters[1],parameters[2]));
+                supplierList.add(new Supplier(parameters[0],parameters[1]));
             }
         }
     }
@@ -48,7 +49,7 @@ public class Records {
         try (Scanner recordReader = new Scanner(HOSPITAL_FILE)) {
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[|]");
-                hospitalList.add(new Hospital(parameters[0],parameters[1],parameters[2]));
+                hospitalList.add(new Hospital(parameters[0],parameters[1]));
             }
         }
     }
