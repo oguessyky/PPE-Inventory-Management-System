@@ -40,6 +40,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("%s|%s|%s|%s", userID, name, password, userType);
+        return String.format("%s;%s;%s;%s", userID, name, password, userType);
     }
 }
