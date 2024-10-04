@@ -163,6 +163,7 @@ public class loginGUI extends javax.swing.JFrame {
             login_error.setText("Incorrect password");
         }
         else{
+            login_error.setText("");
             System.out.println("valid");
         }
     }//GEN-LAST:event_Login_BtnActionPerformed
