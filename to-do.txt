@@ -56,7 +56,7 @@ Hospital
 
 GUI to-do
 
-Login
+Login ✓
 
 Admin Page (inherit Staff Page)
 - User management
@@ -69,11 +69,13 @@ Admin Page (inherit Staff Page)
   - add
   - modify
   - deprecate
+  - Change item supplier
 - Hospital management
   - list (with filter & sort, default non-deprecated order by supplier code asc)
   - add
   - modify
   - deprecate
+
 
 Staff Page
 - Profile update
