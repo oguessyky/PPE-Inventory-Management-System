@@ -27,6 +27,7 @@ public class loginGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         jButton1 = new javax.swing.JButton();
         Login = new javax.swing.JPanel();
         Login_H = new javax.swing.JLabel();
@@ -164,6 +165,7 @@ public class loginGUI extends javax.swing.JFrame {
         }
         else{
             login_error.setText("");
+            loginGUI
             System.out.println("valid");
         }
     }//GEN-LAST:event_Login_BtnActionPerformed
