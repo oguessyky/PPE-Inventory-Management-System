@@ -70,6 +70,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("%s|%d|%s|%s|%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
+        return String.format("%s;%d;%s;%s;%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
     }
 }

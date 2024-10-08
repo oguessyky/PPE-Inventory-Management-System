@@ -50,6 +50,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("%s|%s|%s|%d", itemCode, name, supplier.getPartnerCode(), quantity);
+        return String.format("%s;%s;%s;%d", itemCode, name, supplier.getPartnerCode(), quantity);
     }
 }

@@ -29,7 +29,7 @@ public class Records {
         String[] parameters;
         try (Scanner recordReader = new Scanner(USER_FILE)) {
             while (recordReader.hasNextLine()) {
-                parameters = recordReader.nextLine().split("[|]");
+                parameters = recordReader.nextLine().split("[;]");
                 User.Type userType = User.Type.valueOf(parameters[3]);
                 userList.add(new User(parameters[0],parameters[1],parameters[2],userType));
             }
@@ -39,7 +39,7 @@ public class Records {
         String[] parameters;
         try (Scanner recordReader = new Scanner(SUPPLIER_FILE)) {
             while (recordReader.hasNextLine()) {
-                parameters = recordReader.nextLine().split("[|]");
+                parameters = recordReader.nextLine().split("[;]");
                 supplierList.add(new Supplier(parameters[0],parameters[1]));
             }
         }
@@ -48,7 +48,7 @@ public class Records {
         String[] parameters;
         try (Scanner recordReader = new Scanner(HOSPITAL_FILE)) {
             while (recordReader.hasNextLine()) {
-                parameters = recordReader.nextLine().split("[|]");
+                parameters = recordReader.nextLine().split("[;]");
                 hospitalList.add(new Hospital(parameters[0],parameters[1]));
             }
         }
@@ -57,7 +57,7 @@ public class Records {
         String[] parameters;
         try (Scanner recordReader = new Scanner(ITEM_FILE)) {
             while (recordReader.hasNextLine()) {
-                parameters = recordReader.nextLine().split("[|]");
+                parameters = recordReader.nextLine().split("[;]");
                 Supplier supplier = getSupplier(parameters[2]);
                 int quantity = Integer.parseInt(parameters[3]);
                 itemList.add(new Item(parameters[0], parameters[1], supplier, quantity));
@@ -68,7 +68,7 @@ public class Records {
         String[] parameters;
         try (Scanner recordReader = new Scanner(TRANSACTION_FILE)) {
             while (recordReader.hasNextLine()) {
-                parameters = recordReader.nextLine().split("[|]");
+                parameters = recordReader.nextLine().split("[;]");
                 Item item = getItem(parameters[0]);
                 int quantity = Integer.parseInt(parameters[1]);
                 Transaction.Type transactionType = Transaction.Type.valueOf(parameters[2]);

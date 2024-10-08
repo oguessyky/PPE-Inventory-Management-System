@@ -33,6 +33,6 @@ public abstract class Partner {
 
     @Override
     public String toString() {
-        return String.format("%s|%s|%s", partnerCode, name, address);
+        return String.format("%s;%s;%s", partnerCode, name, address);
     }
 }
