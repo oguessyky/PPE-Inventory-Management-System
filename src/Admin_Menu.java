@@ -25,21 +25,81 @@ public class Admin_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        userManagement_menu = new javax.swing.JButton();
+        Admin_H = new javax.swing.JLabel();
+        supplierManagement_menu = new javax.swing.JButton();
+        hospitalManagement_menu = new javax.swing.JButton();
+        inventoryManagement_menu = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        userManagement_menu.setText("User management");
+        userManagement_menu.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                userManagement_menuComponentHidden(evt);
+            }
+        });
+        userManagement_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userManagement_menuActionPerformed(evt);
+            }
+        });
+
+        Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48)); // NOI18N
+        Admin_H.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Admin_H.setText("ADMIN MENU");
+
+        supplierManagement_menu.setText("Supplier management");
+
+        hospitalManagement_menu.setText("Hospital management");
+
+        inventoryManagement_menu.setText("Inventory management");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(userManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin_H, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supplierManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hospitalManagement_menu, inventoryManagement_menu, supplierManagement_menu, userManagement_menu});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(Admin_H)
+                .addGap(18, 18, 18)
+                .addComponent(userManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(supplierManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {hospitalManagement_menu, inventoryManagement_menu, supplierManagement_menu, userManagement_menu});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userManagement_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagement_menuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userManagement_menuActionPerformed
+
+    private void userManagement_menuComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_userManagement_menuComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userManagement_menuComponentHidden
 
     /**
      * @param args the command line arguments
@@ -77,5 +137,10 @@ public class Admin_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Admin_H;
+    private javax.swing.JButton hospitalManagement_menu;
+    private javax.swing.JButton inventoryManagement_menu;
+    private javax.swing.JButton supplierManagement_menu;
+    private javax.swing.JButton userManagement_menu;
     // End of variables declaration//GEN-END:variables
 }
