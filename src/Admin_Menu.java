@@ -48,6 +48,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48)); // NOI18N
         Admin_H.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Admin_H.setText("ADMIN MENU");
+        Admin_H.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         supplierManagement_menu.setText("Supplier management");
 
@@ -85,7 +86,7 @@ public class Admin_Menu extends javax.swing.JFrame {
                 .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {hospitalManagement_menu, inventoryManagement_menu, supplierManagement_menu, userManagement_menu});
