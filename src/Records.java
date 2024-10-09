@@ -23,11 +23,13 @@ public class Records {
     private static final File HOSPITAL_FILE = new File("..\\Records\\hospitals.txt");
     private static final File ITEM_FILE = new File("..\\Records\\ppe.txt");
     private static final File TRANSACTION_FILE = new File("..\\Records\\transactions.txt");
-
+    
     /* Reading records from file */
     private static void readUsers() throws FileNotFoundException {
         String[] parameters;
+        System.out.print("here");
         try (Scanner recordReader = new Scanner(USER_FILE)) {
+            System.out.print(recordReader.hasNextLine());
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[;]");
                 User.Type userType = User.Type.valueOf(parameters[3]);
@@ -83,7 +85,7 @@ public class Records {
         }
     }
     public static void readRecords() {
-        try { readUsers(); } catch (FileNotFoundException e) {}
+        try { readUsers(); } catch (FileNotFoundException e) { System.out.print(e); }
         try { readSuppliers(); } catch (FileNotFoundException e) {}
         try { readHospitals(); } catch (FileNotFoundException e) {}
         try { readItems(); } catch (FileNotFoundException e) {}

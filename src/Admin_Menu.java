@@ -124,7 +124,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userManagement_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagement_menuActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        userManagement.main(null);
     }//GEN-LAST:event_userManagement_menuActionPerformed
 
     private void userManagement_menuComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_userManagement_menuComponentHidden
@@ -136,6 +137,14 @@ public class Admin_Menu extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+      
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Admin_Menu().setVisible(true);
+            }
+        });
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -157,13 +166,6 @@ public class Admin_Menu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Menu().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

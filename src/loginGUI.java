@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.io.FileReader;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -42,11 +43,11 @@ public class loginGUI extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        
         username.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 24)); // NOI18N
         username.setForeground(new java.awt.Color(204, 204, 204));
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        username.setText("Ex. Oguess");
+        username.setText("USERNAME");
         username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 usernameFocusGained(evt);
@@ -55,11 +56,16 @@ public class loginGUI extends javax.swing.JFrame {
                 usernameFocusLost(evt);
             }
         });
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
 
         password.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 24)); // NOI18N
         password.setForeground(new java.awt.Color(204, 204, 204));
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        password.setText("Ex. 123456");
+        password.setText("PASSWORD");
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
@@ -175,13 +181,20 @@ public class loginGUI extends javax.swing.JFrame {
 
     private void Login_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_BtnActionPerformed
         User user = Records.getUser(username.getText());
-        if ((user == null)) {
+        if (user == null) {
             login_error.setText("Invalid username");
         } else if (!user.getPassword().equals(password.getText())) {
             login_error.setText("Incorrect password");
-        }
-        else{
-            login_error.setText("");
+        } else {
+            this.dispose();
+            switch (user.getUserType()) {
+                case User.Type.Admin -> {
+                    Admin_Menu.main(null);
+                }
+                case User.Type.Staff -> {
+
+                }
+            }
         }
     }//GEN-LAST:event_Login_BtnActionPerformed
 
@@ -212,6 +225,10 @@ public class loginGUI extends javax.swing.JFrame {
             password.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_passwordFocusLost
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +264,9 @@ public class loginGUI extends javax.swing.JFrame {
             }
         });
 
-        Records.main(null);
+        Records.main(args);
+        System.out.print(Records.getUserList());
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
