@@ -26,13 +26,17 @@ public class Admin_Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         userManagement_menu = new javax.swing.JButton();
-        Admin_H = new javax.swing.JLabel();
         supplierManagement_menu = new javax.swing.JButton();
         hospitalManagement_menu = new javax.swing.JButton();
         inventoryManagement_menu = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        Admin_H = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        userManagement_menu.setBackground(new java.awt.Color(0, 51, 102));
+        userManagement_menu.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 18)); // NOI18N
+        userManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         userManagement_menu.setText("User management");
         userManagement_menu.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
@@ -45,30 +49,56 @@ public class Admin_Menu extends javax.swing.JFrame {
             }
         });
 
-        Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48)); // NOI18N
-        Admin_H.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Admin_H.setText("ADMIN MENU");
-        Admin_H.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
+        supplierManagement_menu.setBackground(new java.awt.Color(0, 102, 153));
+        supplierManagement_menu.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 18)); // NOI18N
+        supplierManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         supplierManagement_menu.setText("Supplier management");
 
+        hospitalManagement_menu.setBackground(new java.awt.Color(0, 153, 153));
+        hospitalManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
+        hospitalManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         hospitalManagement_menu.setText("Hospital management");
 
+        inventoryManagement_menu.setBackground(new java.awt.Color(0, 204, 204));
+        inventoryManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
+        inventoryManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         inventoryManagement_menu.setText("Inventory management");
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+
+        Admin_H.setBackground(new java.awt.Color(255, 255, 255));
+        Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48)); // NOI18N
+        Admin_H.setForeground(new java.awt.Color(255, 255, 255));
+        Admin_H.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Admin_H.setText("ADMIN MENU");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Admin_H, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(Admin_H)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(userManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Admin_H, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(supplierManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addComponent(userManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(141, 141, 141))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hospitalManagement_menu, inventoryManagement_menu, supplierManagement_menu, userManagement_menu});
@@ -76,8 +106,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(Admin_H)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(userManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -86,7 +115,7 @@ public class Admin_Menu extends javax.swing.JFrame {
                 .addComponent(hospitalManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inventoryManagement_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {hospitalManagement_menu, inventoryManagement_menu, supplierManagement_menu, userManagement_menu});
@@ -141,6 +170,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Admin_H;
     private javax.swing.JButton hospitalManagement_menu;
     private javax.swing.JButton inventoryManagement_menu;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton supplierManagement_menu;
     private javax.swing.JButton userManagement_menu;
     // End of variables declaration//GEN-END:variables
