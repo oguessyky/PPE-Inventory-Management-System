@@ -79,6 +79,7 @@ public class userManagement extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     edit_button.setEnabled(jTable1.getSelectedRow() != -1);
+                    jButton5.setEnabled(jTable1.getSelectedRow() != -1);
                 }
             }
         });
@@ -226,6 +227,7 @@ public class userManagement extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Delete Data");
+        jButton5.setEnabled(false);
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
