@@ -188,10 +188,10 @@ public class loginGUI extends javax.swing.JFrame {
         } else {
             this.dispose();
             switch (user.getUserType()) {
-                case User.Type.Admin -> {
+                case Admin -> {
                     Admin_Menu.main(null);
                 }
-                case User.Type.Staff -> {
+                case Staff -> {
 
                 }
             }
