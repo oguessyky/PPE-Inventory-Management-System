@@ -73,6 +73,9 @@ public class userManagement extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowSelectionAllowed(false);
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jTable1PropertyChange(evt);
@@ -314,6 +317,10 @@ public class userManagement extends javax.swing.JFrame {
                 new userManagement().setVisible(true);
             }
         });
+    }
+    
+    public void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
