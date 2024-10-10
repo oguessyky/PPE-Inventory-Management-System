@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -69,6 +72,7 @@ public class userManagement extends javax.swing.JFrame {
             }
         };
         jTable1.setModel(tableModel);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         displayUsers();
 
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -80,6 +84,17 @@ public class userManagement extends javax.swing.JFrame {
                 }
             }
         });
+
+        jTable1.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selectedColumn = jTable1.getTableHeader().columnAtPoint(e.getPoint());
+                orderASC = (lastSelectedColumn == selectedColumn) ? orderASC ^ true : true;
+                displayUsers();
+                lastSelectedColumn = selectedColumn;
+            }
+        }
+        );
 
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -331,8 +346,22 @@ public class userManagement extends javax.swing.JFrame {
         if (jComboBox1.getSelectedItem() != null) {
             filter = filter.and(User.IsType(User.Type.valueOf((String)jComboBox1.getSelectedItem())));
         }
+        Comparator<User> sorter = User.IDComparator;
+        String[] newHeader = tableHeader.clone();
+        switch (selectedColumn) {
+            case 0 -> { sorter = User.IDComparator; }
+            case 1 -> { sorter = User.NameComparator; }
+            case 2 -> { sorter = User.TypeComparator; }
+        }
 
-        ArrayList<User> userList = Records.getUserList(filter);
+        if (orderASC) {
+            newHeader[selectedColumn] += "\u25B2";
+        } else {
+            sorter = sorter.reversed();
+            newHeader[selectedColumn] += "\u25BC";
+        }
+
+        ArrayList<User> userList = Records.getUserList(filter,sorter);
         Object[][] data = new Object[userList.size()][4];
         User user;
         for (int idx = 0; idx < userList.size(); idx++) {
@@ -343,7 +372,7 @@ public class userManagement extends javax.swing.JFrame {
                 user.getUserType()
             };
         }
-        tableModel.setDataVector(data, tableHeader);
+        tableModel.setDataVector(data, newHeader);
     }
 
     /**
@@ -402,4 +431,8 @@ public class userManagement extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private javax.swing.table.DefaultTableModel tableModel;
     private String[] tableHeader;
+    private int selectedColumn = 0;
+    private Comparator<User>[] sorters = new Comparator[] { User.IDComparator, User.NameComparator, User.TypeComparator };
+    private int lastSelectedColumn;
+    private boolean orderASC = true;
 }
