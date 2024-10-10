@@ -60,9 +60,9 @@ Login ✓
 
 Admin Page (inherit Staff Page)
 - User management
-  - list (with filter & sort, default no filter order by name asc)
+  - list (with filter & sort, default no filter order by name asc) ✓
   - add
-  - delete
+  - delete ✓
   - modify
 - Supplier management
   - list (with filter & sort, default non-deprecated order by supplier code asc)

@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "loginGUI",
+            "request": "launch",
+            "mainClass": "loginGUI",
+            "projectName": "OOP-assignment_515bd0c4"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "OOP-assignment_515bd0c4"
+        },
+        {
+            "type": "java",
+            "name": "userManagement",
+            "request": "launch",
+            "mainClass": "userManagement",
+            "projectName": "OOP-assignment_515bd0c4"
+        },
+        {
+            "type": "java",
             "name": "Records",
             "request": "launch",
             "mainClass": "Records",
