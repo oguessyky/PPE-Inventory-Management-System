@@ -3,6 +3,7 @@
 
 public abstract class Main {
 
+    private static User currentUser;
     private static Menu menu;
     private static final loginGUI loginGUI = new loginGUI();
     private static userManagement userManagement;
@@ -51,6 +52,7 @@ public abstract class Main {
     }
 
     public static void initializeMenu(User user) {
+        currentUser = user;
         switch (user.getUserType()) {
             case Admin -> {
                 menu = new Admin_Menu();
@@ -72,4 +74,5 @@ public abstract class Main {
         userManagement = new userManagement();
         userManagement.setVisible(true);
     }
+    public static User getUser() { return currentUser; }
 }
