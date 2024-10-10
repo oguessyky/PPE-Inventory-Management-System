@@ -417,6 +417,10 @@ public class userManagement extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton edit_button;
