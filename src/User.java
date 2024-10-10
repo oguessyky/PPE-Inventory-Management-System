@@ -16,7 +16,9 @@ public class User {
     public static final Comparator<User> NameComparator = Comparator.comparing(User::getName);
 
     /* Predicates for filtering */
+    public static final Predicate<User> IDContains(String s) { return (user -> user.userID.contains(s)); }
     public static final Predicate<User> NameContains(String s) { return (user -> user.name.contains(s)); }
+    public static final Predicate<User> IsType(User.Type userType) { return (user -> user.userType == userType); }
 
     /* constructors */
     public User(String userID, String name, String password, Type userType) {

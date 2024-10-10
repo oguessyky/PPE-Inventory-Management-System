@@ -255,7 +255,10 @@ public abstract class Records {
     public static void addItem(Item item) { itemList.add(item); }
 
     /* Deleting records */
-    public static void deleteUser(User user) { userList.remove(user); }
+    public static void deleteUser(User user) { 
+        userList.remove(user); 
+        updateRecords();
+    }
 
     public static void main(String[] args) {
         /* Main code (throw this in some relevant class (GUI) instead) */

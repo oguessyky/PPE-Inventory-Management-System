@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.util.ArrayList;
+import java.util.function.Predicate;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -47,17 +49,10 @@ public class userManagement extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Username", "Name", "Type"
-            }
-        ) {
+        tableHeader = new String [] {
+            "Username", "Name", "Type"
+        };
+        tableModel = new javax.swing.table.DefaultTableModel(new Object [][] {}, tableHeader) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, User.Type.class
             };
@@ -72,7 +67,9 @@ public class userManagement extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });
+        };
+        jTable1.setModel(tableModel);
+        displayUsers();
 
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -150,7 +147,7 @@ public class userManagement extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Admin", "Staff" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { null, "Admin", "Staff" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -218,17 +215,32 @@ public class userManagement extends javax.swing.JFrame {
         edit_button.setForeground(new java.awt.Color(255, 255, 255));
         edit_button.setText("Edit Data");
         edit_button.setEnabled(false);
+        edit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_buttonActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(153, 0, 51));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Delete Data");
         jButton5.setEnabled(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Add Data");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,18 +287,64 @@ public class userManagement extends javax.swing.JFrame {
         Main.showMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Records.deleteUser(
+            Records.getUser(
+            (String) tableModel.getDataVector()
+                .get(jTable1.getSelectedRow())
+                .get(0)
+            )
+        );
+        displayUsers();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add user
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.print(
+            Records.getUser(
+            (String) tableModel.getDataVector()
+                .get(jTable1.getSelectedRow())
+                .get(0)
+            )
+        );
+        // TODO edit page
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+        displayUsers();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
+        displayUsers();
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        displayUsers();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void displayUsers() {
+        Predicate<User> filter = User.IDContains(jTextField2.getText())
+        .and(User.NameContains(jTextField3.getText()));
+        if (jComboBox1.getSelectedItem() != null) {
+            filter = filter.and(User.IsType(User.Type.valueOf((String)jComboBox1.getSelectedItem())));
+        }
+
+        ArrayList<User> userList = Records.getUserList(filter);
+        Object[][] data = new Object[userList.size()][4];
+        User user;
+        for (int idx = 0; idx < userList.size(); idx++) {
+            user = userList.get(idx);
+            data[idx] = new Object[] {
+                user.getUserID(),
+                user.getName(),
+                user.getUserType()
+            };
+        }
+        tableModel.setDataVector(data, tableHeader);
+    }
 
     /**
      * @param args the command line arguments
@@ -297,6 +355,7 @@ public class userManagement extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        Records.readRecords();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -341,4 +400,6 @@ public class userManagement extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.table.DefaultTableModel tableModel;
+    private String[] tableHeader;
 }
