@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
-public class Records {
+public abstract class Records {
 
     /* Storing records */
     private static final ArrayList<User> userList = new ArrayList<>();
@@ -27,9 +27,7 @@ public class Records {
     /* Reading records from file */
     private static void readUsers() throws FileNotFoundException {
         String[] parameters;
-        System.out.print("here");
         try (Scanner recordReader = new Scanner(USER_FILE)) {
-            System.out.print(recordReader.hasNextLine());
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[;]");
                 User.Type userType = User.Type.valueOf(parameters[3]);

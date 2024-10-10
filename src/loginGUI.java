@@ -187,14 +187,7 @@ public class loginGUI extends javax.swing.JFrame {
             login_error.setText("Incorrect password");
         } else {
             this.dispose();
-            switch (user.getUserType()) {
-                case Admin -> {
-                    Admin_Menu.main(null);
-                }
-                case Staff -> {
-
-                }
-            }
+            Main.initializeMenu(user);
         }
     }//GEN-LAST:event_Login_BtnActionPerformed
 

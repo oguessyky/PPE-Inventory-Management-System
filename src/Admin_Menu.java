@@ -7,7 +7,7 @@
  *
  * @author User
  */
-public class Admin_Menu extends javax.swing.JFrame {
+public class Admin_Menu extends Menu {
 
     /**
      * Creates new form Admin_Menu
@@ -124,8 +124,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userManagement_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagement_menuActionPerformed
-        this.dispose();
-        userManagement.main(null);
+        Main.hideMenu();
+        Main.manageUser();
     }//GEN-LAST:event_userManagement_menuActionPerformed
 
     private void userManagement_menuComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_userManagement_menuComponentHidden
