@@ -355,10 +355,10 @@ public class userManagement extends javax.swing.JFrame {
         }
 
         if (orderASC) {
-            newHeader[selectedColumn] += "\u25B2";
+            newHeader[selectedColumn] += " \u25B2";
         } else {
             sorter = sorter.reversed();
-            newHeader[selectedColumn] += "\u25BC";
+            newHeader[selectedColumn] += " \u25BC";
         }
 
         ArrayList<User> userList = Records.getUserList(filter,sorter);
