@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -303,14 +305,17 @@ public class userManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Records.deleteUser(
-            Records.getUser(
+        User user = Records.getUser(
             (String) tableModel.getDataVector()
                 .get(jTable1.getSelectedRow())
                 .get(0)
-            )
         );
-        displayUsers();
+        if (user == Main.getUser()) {
+            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Cannot delete current user.","Error",JOptionPane.ERROR_MESSAGE));
+        } else {
+            Records.deleteUser(user);
+            displayUsers();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -318,14 +323,16 @@ public class userManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.print(
-            Records.getUser(
+        User user = Records.getUser(
             (String) tableModel.getDataVector()
                 .get(jTable1.getSelectedRow())
                 .get(0)
-            )
         );
-        // TODO edit page
+        if (user == Main.getUser()) {
+            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Cannot edit current user.","Error",JOptionPane.ERROR_MESSAGE));
+        } else {
+            // TODO edit page
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -436,7 +443,6 @@ public class userManagement extends javax.swing.JFrame {
     private javax.swing.table.DefaultTableModel tableModel;
     private String[] tableHeader;
     private int selectedColumn = 0;
-    private Comparator<User>[] sorters = new Comparator[] { User.IDComparator, User.NameComparator, User.TypeComparator };
     private int lastSelectedColumn;
     private boolean orderASC = true;
 }
