@@ -45,7 +45,7 @@ public class loginGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         username.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 24)); // NOI18N
-        username.setForeground(new java.awt.Color(204, 204, 204));
+        username.setForeground(new java.awt.Color(153, 153, 153));
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username.setText("USERNAME");
         username.addFocusListener(new java.awt.event.FocusAdapter() {
