@@ -8,7 +8,7 @@ public abstract class Main {
     private static Menu menu;
     private static final loginGUI loginGUI = new loginGUI();
     private static userManagement userManagement;
-    private static update addUser;
+    private static UserEdit editUser;
 
     public static void main(String[] args) {
         // try (Scanner userInput = new Scanner(System.in)) {
@@ -32,7 +32,7 @@ public abstract class Main {
         Records.readRecords();
         if (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
             addNewUser(true);
-            while (addUser.isDisplayable()) {}
+            while (editUser.isDisplayable()) {}
         }
         if (Records.getSupplierList().size() < 3) {
             /* Get min 3 supplier data, GUI stuff */
@@ -78,16 +78,21 @@ public abstract class Main {
     public static User getUser() { return currentUser; }
 
     public static void addNewUser() {
-        addUser = new update();
-        addUser.setVisible(true);
+        editUser = new UserEdit();
+        editUser.setVisible(true);
     }
 
     public static void addNewUser(boolean firstRun) {
-        addUser = new update(firstRun);
-        addUser.setVisible(true);
+        editUser = new UserEdit(firstRun);
+        editUser.setVisible(true);
+    }
+
+    public static void editUser(User user) {
+        editUser = new UserEdit(user);
+        editUser.setVisible(true);
     }
 
     public static void showError(Component parentComponent,String errorMsg) {
-        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(parentComponent, errorMsg,"Error",JOptionPane.ERROR_MESSAGE));
+        JOptionPane.showMessageDialog(parentComponent, errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
     }
 }

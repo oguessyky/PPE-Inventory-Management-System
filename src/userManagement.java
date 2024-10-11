@@ -332,7 +332,8 @@ public class userManagement extends javax.swing.JFrame {
         if (user == Main.getUser()) {
             Main.showError(this, "Cannot edit current user.");
         } else {
-            // TODO edit page
+            this.dispose();
+            Main.editUser(user);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

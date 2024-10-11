@@ -1,4 +1,5 @@
 
+import java.awt.TextField;
 import javax.swing.*;
 
 /*
@@ -15,6 +16,11 @@ public abstract class Form extends JFrame {
     /**
      * Creates new form update
      */
+    public enum EditType {
+        FirstRun,
+        Add,
+        Update
+    }
 
 
     public Form(String title, String[] inputLabels, JComponent[] inputFields) {
@@ -133,6 +139,32 @@ public abstract class Form extends JFrame {
     protected abstract void exit();
 
     protected abstract void submit();
+
+    protected Object getInputOf(int inputIndex) {
+        JComponent input = inputFields[inputIndex];
+        if (input instanceof JPasswordField passwordField) {
+            return String.valueOf(passwordField.getPassword());
+        } else if (input instanceof JTextField textField) {
+            return textField.getText();
+        } else if (input instanceof JComboBox comboBox) {
+            return comboBox.getSelectedItem();
+        }
+
+        return null;
+    }
+
+    protected void setInputOf(int inputIndex,Object value) {
+        JComponent input = inputFields[inputIndex];
+        if (input instanceof JTextField textField) {
+            textField.setText((String)value);
+        } else if (input instanceof JComboBox comboBox) {
+            comboBox.setSelectedItem(value);
+        } else if (input instanceof JButton button) {
+            button.setText((String)value);
+        }
+    }
+
+
 
     protected JButton backButton;
     protected JButton confirmButton;
