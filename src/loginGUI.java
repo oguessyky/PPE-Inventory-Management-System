@@ -32,7 +32,7 @@ public class loginGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Login = new javax.swing.JPanel();
         username = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         Login_Btn = new javax.swing.JButton();
         login_error = new javax.swing.JLabel();
@@ -66,6 +66,7 @@ public class loginGUI extends javax.swing.JFrame {
         password.setForeground(new java.awt.Color(204, 204, 204));
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("PASSWORD");
+        password.setEchoChar((char)0);
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
@@ -185,7 +186,7 @@ public class loginGUI extends javax.swing.JFrame {
         User user = Records.getUser(username.getText());
         if (user == null) {
             login_error.setText("Invalid username");
-        } else if (!user.getPassword().equals(password.getText())) {
+        } else if (!user.getPassword().equals(String.valueOf(password.getPassword()))) {
             login_error.setText("Incorrect password");
         } else {
             this.dispose();
@@ -201,21 +202,23 @@ public class loginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFocusGained
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
-        if(password.getText().equals("PASSWORD")){
+        if (String.valueOf(password.getPassword()).equals("PASSWORD")){
+            password.setEchoChar('*');
             password.setText("");
             password.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_passwordFocusGained
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
-       if(username.getText().equals("")){
+        if (username.getText().isBlank()) {
             username.setText("USERNAME");
             username.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_usernameFocusLost
 
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
-        if(password.getText().equals("")){
+        if (String.valueOf(password.getPassword()).isBlank()){
+            password.setEchoChar((char)0);
             password.setText("PASSWORD");
             password.setForeground(new Color(153,153,153));
         }
@@ -273,7 +276,7 @@ public class loginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel login_error;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

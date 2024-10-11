@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "update",
+            "request": "launch",
+            "mainClass": "update",
+            "projectName": "OOP-assignment_515bd0c4"
+        },
+        {
+            "type": "java",
+            "name": "Admin_Menu",
+            "request": "launch",
+            "mainClass": "Admin_Menu",
+            "projectName": "OOP-assignment_515bd0c4"
+        },
+        {
+            "type": "java",
             "name": "loginGUI",
             "request": "launch",
             "mainClass": "loginGUI",

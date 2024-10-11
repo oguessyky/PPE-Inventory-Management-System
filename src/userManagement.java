@@ -311,7 +311,7 @@ public class userManagement extends javax.swing.JFrame {
                 .get(0)
         );
         if (user == Main.getUser()) {
-            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Cannot delete current user.","Error",JOptionPane.ERROR_MESSAGE));
+            Main.showError(this, "Cannot delete current user.");
         } else {
             Records.deleteUser(user);
             displayUsers();
@@ -319,7 +319,8 @@ public class userManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add user
+        this.dispose();
+        Main.addNewUser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -329,7 +330,7 @@ public class userManagement extends javax.swing.JFrame {
                 .get(0)
         );
         if (user == Main.getUser()) {
-            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Cannot edit current user.","Error",JOptionPane.ERROR_MESSAGE));
+            Main.showError(this, "Cannot edit current user.");
         } else {
             // TODO edit page
         }
@@ -357,8 +358,8 @@ public class userManagement extends javax.swing.JFrame {
         String[] newHeader = tableHeader.clone();
         switch (selectedColumn) {
             case 0 -> { sorter = User.IDComparator; }
-            case 1 -> { sorter = User.NameComparator; }
-            case 2 -> { sorter = User.TypeComparator; }
+            case 1 -> { sorter = User.NameComparator.thenComparing(User.IDComparator); }
+            case 2 -> { sorter = User.TypeComparator.thenComparing(User.IDComparator); }
         }
 
         if (orderASC) {
@@ -416,10 +417,6 @@ public class userManagement extends javax.swing.JFrame {
                 new userManagement().setVisible(true);
             }
         });
-    }
-    
-    public void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

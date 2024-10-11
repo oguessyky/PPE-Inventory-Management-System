@@ -16,6 +16,13 @@ public class update extends javax.swing.JFrame {
         initComponents();
         setSize(550,440);
     }
+    public update(boolean firstRun) {
+        this.firstRun = firstRun;
+        initComponents();
+        setSize(550,440);
+        userTypeField.setEnabled(!firstRun);
+        back_button.setVisible(!firstRun);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,35 +34,42 @@ public class update extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        type_combobox = new javax.swing.JComboBox<>();
+        userTypeField = new javax.swing.JComboBox<>();
         back_button = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        userIDField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        nameField = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        passwordConfirmField = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        type_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
+        userTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
 
         back_button.setText("Back");
+
+        back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
+            }
+        });
+
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel8.setText("User ID :");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                userIDFieldActionPerformed(evt);
             }
         });
 
@@ -63,7 +77,7 @@ public class update extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Name :");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        userIDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
@@ -77,22 +91,28 @@ public class update extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel11.setText("Password :");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Confirm");
+        confirmButton.setBackground(new java.awt.Color(0, 51, 102));
+        confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        confirmButton.setForeground(new java.awt.Color(255, 255, 255));
+        confirmButton.setText("Confirm");
+
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel12.setText("Confirm Password :");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        passwordConfirmField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
@@ -106,7 +126,7 @@ public class update extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(back_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(confirmButton)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
@@ -118,17 +138,17 @@ public class update extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(type_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordConfirmField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField2, jTextField5, type_combobox});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {passwordField, passwordConfirmField, userTypeField});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {userIDField, nameField});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,31 +156,31 @@ public class update extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordConfirmField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(type_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back_button)
-                    .addComponent(jButton2))
+                    .addComponent(confirmButton))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel8, jLabel9, jTextField2, jTextField3, jTextField4, jTextField5, type_combobox});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel8, jLabel9, passwordField, userIDField, nameField, passwordConfirmField, userTypeField});
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 152));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -201,7 +221,7 @@ public class update extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void userIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
@@ -216,6 +236,46 @@ public class update extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Main.manageUser();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String userID = userIDField.getText();
+        String name = nameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        String passwordConfirm = String.valueOf(passwordConfirmField.getPassword());
+        User.Type userType = User.Type.valueOf((String)userTypeField.getSelectedItem());
+
+        if (userID.isBlank()) {
+            Main.showError(this, "UserID cannot be blank!");
+        } else if (userID.contains(";")) {
+            Main.showError(this, "Invalid UserID!"); // can further restrict via regex if needed
+        } else if (Records.getUser(userID) != null) {
+            Main.showError(this, "UserID already exist!");
+        } else if (name.isBlank()) {
+            Main.showError(this, "Name cannot be blank!");
+        } else if (name.contains(";")) {
+            Main.showError(this, "Invalid Name!"); // can further restrict via regex if needed
+        } else if (password.isBlank()) {
+            Main.showError(this, "Password cannot be blank!");
+        } else if (password.contains(";")) {
+            Main.showError(this, "Please choose another password."); // LMAO i cannot think of a reason to stop users from using ; in their password
+        } else if (!password.equals(passwordConfirm)) {
+            Main.showError(this, "Password mismatch!");
+        } else {
+            User newUser = new User(userID, name, password, userType);
+            Records.addUser(newUser);
+            Records.updateRecords();
+            this.dispose();
+            if (!firstRun) {
+                Main.manageUser();
+            }
+        }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +314,7 @@ public class update extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_button;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -263,10 +323,11 @@ public class update extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JComboBox<String> type_combobox;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField userIDField;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JPasswordField passwordConfirmField;
+    private javax.swing.JComboBox<String> userTypeField;
     // End of variables declaration//GEN-END:variables
+    private boolean firstRun;
 }

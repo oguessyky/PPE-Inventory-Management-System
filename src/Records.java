@@ -83,7 +83,7 @@ public abstract class Records {
         }
     }
     public static void readRecords() {
-        try { readUsers(); } catch (FileNotFoundException e) { System.out.print(e); }
+        try { readUsers(); } catch (FileNotFoundException e) {}
         try { readSuppliers(); } catch (FileNotFoundException e) {}
         try { readHospitals(); } catch (FileNotFoundException e) {}
         try { readItems(); } catch (FileNotFoundException e) {}
