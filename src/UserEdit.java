@@ -7,7 +7,7 @@ public class UserEdit extends Form {
             "Name :",
             "Password :",
             "Confirm Password :",
-            "Uesr Type :"
+            "User Type :"
         },
         new JComponent[] {
             new JTextField(),
