@@ -32,7 +32,7 @@ public abstract class Main {
         Records.readRecords();
         if (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
             addNewUser(true);
-            while (addUser.isShowing()) {}
+            while (addUser.isDisplayable()) {}
         }
         if (Records.getSupplierList().size() < 3) {
             /* Get min 3 supplier data, GUI stuff */

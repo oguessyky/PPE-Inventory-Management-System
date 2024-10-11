@@ -34,7 +34,7 @@ public class update extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        userTypeField = new javax.swing.JComboBox<>();
+        userTypeField = new javax.swing.JComboBox<>(new User.Type[] { User.Type.Admin, User.Type.Staff });
         back_button = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
@@ -52,7 +52,7 @@ public class update extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        userTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
+        
 
         back_button.setText("Back");
 
@@ -247,7 +247,7 @@ public class update extends javax.swing.JFrame {
         String name = nameField.getText();
         String password = String.valueOf(passwordField.getPassword());
         String passwordConfirm = String.valueOf(passwordConfirmField.getPassword());
-        User.Type userType = User.Type.valueOf((String)userTypeField.getSelectedItem());
+        User.Type userType = (User.Type)userTypeField.getSelectedItem();
 
         if (userID.isBlank()) {
             Main.showError(this, "UserID cannot be blank!");
@@ -327,7 +327,7 @@ public class update extends javax.swing.JFrame {
     private javax.swing.JTextField userIDField;
     private javax.swing.JTextField nameField;
     private javax.swing.JPasswordField passwordConfirmField;
-    private javax.swing.JComboBox<String> userTypeField;
+    private javax.swing.JComboBox<User.Type> userTypeField;
     // End of variables declaration//GEN-END:variables
     private boolean firstRun;
 }
