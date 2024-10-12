@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class TransactionEdit extends Form {
+public class TransactionEdit extends EditForm {
 
     Transaction.Type transactionType;
 
@@ -25,6 +25,13 @@ public class TransactionEdit extends Form {
             })
         });
         this.transactionType = transactionType;
+        if (transactionType == Transaction.Type.Received) {
+            setInputOf(2, ((Item)getInputOf(0)).getSupplier());
+            inputFields[2].setEnabled(false);
+            ((JComboBox<Item>)inputFields[0]).addActionListener((evt) -> {
+                setInputOf(2, ((Item)getInputOf(0)).getSupplier());
+            });
+        }
     }
 
     @Override
@@ -42,7 +49,6 @@ public class TransactionEdit extends Form {
         } else {
             Partner partner = (Partner)getInputOf(2);
             Records.addTransaction(new Transaction(item, quantity, transactionType, partner));
-            Records.updateRecords();
             this.dispose();
             // todo link page
         }

@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class UserEdit extends Form {
+public class UserEdit extends EditForm {
 
     EditType editType;
     User user;
@@ -112,7 +112,6 @@ public class UserEdit extends Form {
                         Main.showError(this, "Password mismatch!");
                     } else {
                         Records.addUser(new User(userID, name, password, userType));
-                        Records.updateRecords();
                         this.dispose();
                         if (editType != EditType.FirstRun) {
                             Main.manageUser();

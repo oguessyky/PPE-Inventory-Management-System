@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class ItemEdit extends Form {
+public class ItemEdit extends EditForm {
 
     EditType editType;
     Item item;
@@ -59,6 +59,7 @@ public class ItemEdit extends Form {
         switch (editType) {
             case Update -> {
                 item.setSupplier(supplier);
+                Records.updateRecords();
             }
             default -> {
                 String itemCode = (String)getInputOf(0);
@@ -67,7 +68,6 @@ public class ItemEdit extends Form {
                 Records.addItem(new Item(itemCode, name, supplier, quantity));
             }
         }
-        Records.updateRecords();
         this.dispose();
         if (editType != EditType.FirstRun) {
             // todo link page

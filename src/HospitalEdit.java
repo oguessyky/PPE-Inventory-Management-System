@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class HospitalEdit extends Form {
+public class HospitalEdit extends EditForm {
 
     EditType editType;
     Hospital hospital;
@@ -70,12 +70,12 @@ public class HospitalEdit extends Form {
                 case Update -> {
                     hospital.setName(name);
                     hospital.setAddress(address);
+                    Records.updateRecords();
                 }
                 default -> {
                     Records.addHospital(new Hospital(name,address));
                 }
             }
-            Records.updateRecords();
             this.dispose();
             if (editType != EditType.FirstRun) {
                 // TODO link page

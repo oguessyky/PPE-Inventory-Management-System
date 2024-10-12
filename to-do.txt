@@ -86,14 +86,14 @@ Staff Page
   - distribute ✓
 - Logout
 
-First time use:
-- Register first admin (user.txt no data)
-- Add min 3 supplier (supplier.txt insufficient data)
-- Add min 3 hospital (hospital.txt insufficient data)
-- Add item (set supplier) (ppe.txt insufficient data)
-  - HC	Head Cover
-  - FS	Face Shield
-  - MS	Mask
-  - GL	Gloves
-  - GW	Gown
-  - SC	Shoe Covers
+First time use: ✓
+- Register first admin (user.txt no data) ✓
+- Add min 3 supplier (supplier.txt insufficient data) ✓
+- Add min 3 hospital (hospital.txt insufficient data) ✓
+- Add item (set supplier) (ppe.txt insufficient data) ✓
+  - HC	Head Cover ✓
+  - FS	Face Shield ✓
+  - MS	Mask ✓
+  - GL	Gloves ✓
+  - GW	Gown ✓
+  - SC	Shoe Covers ✓

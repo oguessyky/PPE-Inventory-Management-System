@@ -1,5 +1,5 @@
 import javax.swing.*;
-public class SupplierEdit extends Form {
+public class SupplierEdit extends EditForm {
 
     EditType editType;
     Supplier supplier;
@@ -70,12 +70,12 @@ public class SupplierEdit extends Form {
                 case Update -> {
                     supplier.setName(name);
                     supplier.setAddress(address);
+                    Records.updateRecords();
                 }
                 default -> {
                     Records.addSupplier(new Supplier(name,address));
                 }
             }
-            Records.updateRecords();
             this.dispose();
             if (editType != EditType.FirstRun) {
                 // TODO link page

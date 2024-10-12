@@ -9,7 +9,7 @@ import javax.swing.*;
  *
  * @author User
  */
-public abstract class Form extends JFrame {
+public abstract class EditForm extends JFrame {
 
     /**
      * Creates new form update
@@ -21,7 +21,7 @@ public abstract class Form extends JFrame {
     }
 
 
-    public Form(String title, String[] inputLabels, JComponent[] inputFields) {
+    public EditForm(String title, String[] inputLabels, JComponent[] inputFields) {
         if (inputLabels.length != inputFields.length) {
             throw new AssertionError("Number of labels does not match number of fields");
         }
@@ -52,10 +52,8 @@ public abstract class Form extends JFrame {
         GroupLayout.ParallelGroup fieldGroup = jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER);
         GroupLayout.SequentialGroup sequentialGroup = jPanel1Layout.createSequentialGroup().addGap(34, 34, 34);
         for (int idx = 0; idx < inputLabels.length; idx++) {
-            JLabel label = new JLabel();
-            label.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-            label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            label.setText(inputLabels[idx]);
+            JLabel label = new JLabel(inputLabels[idx], SwingConstants.TRAILING);
+            label.setFont(new java.awt.Font("Segoe UI", 1, 12));
             labelGroup = labelGroup.addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE);
             fieldGroup = fieldGroup.addComponent(inputFields[idx], javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE);
             sequentialGroup = sequentialGroup
@@ -131,7 +129,6 @@ public abstract class Form extends JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
         pack();
     }
 

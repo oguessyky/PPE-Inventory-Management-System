@@ -15,7 +15,7 @@ public abstract class Main {
     private static Menu menu;
     private static final loginGUI loginGUI = new loginGUI();
     private static userManagement userManagement;
-    private static Form form;
+    private static EditForm form;
 
     public static void main(String[] args) {
         // try (Scanner userInput = new Scanner(System.in)) {

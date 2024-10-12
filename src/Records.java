@@ -250,15 +250,30 @@ public abstract class Records {
     }
 
     /* Adding records */
-    public static void addUser(User user) { userList.add(user); }
-    public static void addSupplier(Supplier supplier) { supplierList.add(supplier); }
-    public static void addHospital(Hospital hospital) { hospitalList.add(hospital); }
-    public static void addTransaction(Transaction transaction) { transactionList.add(transaction); }
-    public static void addItem(Item item) { itemList.add(item); }
+    public static void addUser(User user) {
+        userList.add(user);
+        updateRecords();
+    }
+    public static void addSupplier(Supplier supplier) {
+        supplierList.add(supplier);
+        updateRecords();
+    }
+    public static void addHospital(Hospital hospital) {
+        hospitalList.add(hospital);
+        updateRecords();
+    }
+    public static void addTransaction(Transaction transaction) {
+        transactionList.add(transaction);
+        updateRecords();
+    }
+    public static void addItem(Item item) {
+        itemList.add(item);
+        updateRecords();
+    }
 
     /* Deleting records */
-    public static void deleteUser(User user) { 
-        userList.remove(user); 
+    public static void deleteUser(User user) {
+        userList.remove(user);
         updateRecords();
     }
 
