@@ -162,6 +162,8 @@ public abstract class Form extends JFrame {
             comboBox.setSelectedItem(value);
         } else if (input instanceof JButton button) {
             button.setText((String)value);
+        } else if (input instanceof JSpinner spinner) {
+            spinner.setValue(value);
         }
     }
 

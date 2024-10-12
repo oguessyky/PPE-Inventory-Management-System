@@ -53,17 +53,14 @@ public class UserEdit extends Form {
             "Reset Password :"
         },
         new JComponent[] {
-            new JTextField(),
-            new JTextField(),
+            new JTextField(user.getUserID()),
+            new JTextField(user.getName()),
             new JComboBox<>(new User.Type[] { User.Type.Admin, User.Type.Staff }),
-            new JButton()
+            new JButton("Reset Password")
         });
         this.editType = EditType.Update;
         this.user = user;
-        setInputOf(0, user.getUserID());
-        setInputOf(1, user.getName());
         setInputOf(2, user.getUserType());
-        setInputOf(3, "Reset Password");
         ((JButton)inputFields[3]).addActionListener((evt) -> {
             user.setPassword("12345678");
             Records.updateRecords();

@@ -79,7 +79,7 @@ public abstract class Records {
                     partner = getHospital(parameters[3]);
                 else
                     partner = getSupplier(parameters[3]);
-                Date date = new Date(Integer.parseInt(parameters[4]));
+                Date date = new Date(Long.parseLong(parameters[4]));
                 transactionList.add(new Transaction(item, quantity, transactionType, partner, date));
             }
         }

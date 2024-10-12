@@ -38,13 +38,11 @@ public class HospitalEdit extends Form {
             "Address :"
         },
         new JComponent[] {
-            new JTextField(),
-            new JTextField()
+            new JTextField(hospital.getName()),
+            new JTextField(hospital.getAddress())
         });
         this.editType = EditType.Update;
         this.hospital = hospital;
-        setInputOf(0, hospital.getName());
-        setInputOf(1, hospital.getAddress());
     }
 
 

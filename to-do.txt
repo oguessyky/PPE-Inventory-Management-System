@@ -6,18 +6,18 @@ User
   - password ✓
   - userType (admin/staff) ✓ (considering using enum)
 - store in user.txt ✓
-- admin
-  - add
-  - modify
-  - search
-  - delete users
+- admin ✓
+  - add ✓
+  - modify ✓
+  - search ✓
+  - delete users ✓
 
 Inventory
   - item code ✓
   - supplier code ✓
   - quantity (num of boxes) ✓
 - store in ppe.txt ✓
-- creation only in first run (default quantity 100 ✓)
+- creation only in first run (default quantity 100 ✓) ✓
 - outputs:
   - total quantity by item code asc
   - all items < 25 boxes
@@ -27,12 +27,12 @@ Inventory
     - include total quantity grouped by supplier/hospital
 - 1 SUPPLIER PER ITEM (also kinda dumb) ✓
 - all items:
-HC	Head Cover
-FS	Face Shield
-MS	Mask
-GL	Gloves
-GW	Gown
-SC	Shoe Covers
+HC	Head Cover ✓
+FS	Face Shield ✓
+MS	Mask ✓
+GL	Gloves ✓
+GW	Gown ✓
+SC	Shoe Covers ✓
 
 Transaction
   - item code ✓
@@ -42,15 +42,15 @@ Transaction
   - date-time ✓ (implemented current date as default value when adding transactions)
 - store in transactions.txt ✓
 - update quantity after receive n distribution ✓
-- quantity validation when distributing (show current inventory)
+- quantity validation when distributing (show current inventory) ✓
 
 Supplier
 - store in suppliers.txt ✓
-- min 3-4 suppliers
+- min 3-4 suppliers ✓
 
 Hospital
 - store in hospitals.txt ✓
-- min 3-4 hospitals
+- min 3-4 hospitals ✓
 
 ---------------------------------------------------------------------------------------
 
@@ -61,28 +61,29 @@ Login ✓
 Admin Page (inherit Staff Page)
 - User management
   - list (with filter & sort, default no filter order by name asc) ✓
-  - add
+  - add ✓
   - delete ✓
-  - modify
+  - modify ✓
 - Supplier management
   - list (with filter & sort, default non-deprecated order by supplier code asc)
-  - add
-  - modify
+  - add ✓
+  - modify ✓
   - deprecate
-  - Change item supplier
 - Hospital management
   - list (with filter & sort, default non-deprecated order by supplier code asc)
-  - add
-  - modify
+  - add ✓
+  - modify ✓
   - deprecate
+- Inventory management
+  - Change item supplier ✓
 
 
 Staff Page
 - Profile update
-- Inventory management
+- Inventory management (with item and traansaction data)
   - list (with filter & sort, default no filter order by quantity, item code asc)
-  - receive
-  - distribute
+  - receive ✓
+  - distribute ✓
 - Logout
 
 First time use:

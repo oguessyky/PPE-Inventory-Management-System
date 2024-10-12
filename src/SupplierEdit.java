@@ -38,13 +38,11 @@ public class SupplierEdit extends Form {
             "Address :"
         },
         new JComponent[] {
-            new JTextField(),
-            new JTextField()
+            new JTextField(supplier.getName()),
+            new JTextField(supplier.getAddress())
         });
         this.editType = EditType.Update;
         this.supplier = supplier;
-        setInputOf(0, supplier.getName());
-        setInputOf(1, supplier.getAddress());
     }
 
 
