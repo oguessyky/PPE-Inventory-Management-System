@@ -320,7 +320,7 @@ public class userManagement extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        Main.addNewUser();
+        Main.newForm(Main.FormType.User);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

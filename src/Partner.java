@@ -1,10 +1,15 @@
 import java.util.Comparator;
 import java.util.function.Predicate;
 public abstract class Partner {
+    public enum Status {
+        Active,
+        Inactive
+    }
     /* attributes */
     protected static int newPartnerCode;
     protected final String partnerCode;
     protected String name, address;
+    protected Status status;
 
     /* Comparators for sorting */
     public static final Comparator<Partner> CodeComparator = Comparator.comparing(Partner::getPartnerCode);
@@ -20,6 +25,13 @@ public abstract class Partner {
         this.partnerCode = String.format(partnerCodeFormat,newPartnerCode++);
         this.name = name;
         this.address = address;
+        this.status = Status.Active;
+    }
+    public Partner(String partnerCodeFormat, String name, String address, Status status) {
+        this.partnerCode = String.format(partnerCodeFormat,newPartnerCode++);
+        this.name = name;
+        this.address = address;
+        this.status = status;
     }
 
     /* getters */

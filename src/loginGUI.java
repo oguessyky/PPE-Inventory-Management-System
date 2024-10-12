@@ -195,17 +195,19 @@ public class loginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Login_BtnActionPerformed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
-        if(username.getText().equals("USERNAME")){
+        if(usernameBlank){
             username.setText("");
             username.setForeground(new Color(153,153,153));
+            usernameBlank = false;
         }
     }//GEN-LAST:event_usernameFocusGained
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
-        if (String.valueOf(password.getPassword()).equals("PASSWORD")){
+        if (passwordBlank){
             password.setEchoChar('*');
             password.setText("");
             password.setForeground(new Color(153,153,153));
+            passwordBlank = false;
         }
     }//GEN-LAST:event_passwordFocusGained
 
@@ -213,6 +215,7 @@ public class loginGUI extends javax.swing.JFrame {
         if (username.getText().isBlank()) {
             username.setText("USERNAME");
             username.setForeground(new Color(153,153,153));
+            usernameBlank = true;
         }
     }//GEN-LAST:event_usernameFocusLost
 
@@ -221,11 +224,12 @@ public class loginGUI extends javax.swing.JFrame {
             password.setEchoChar((char)0);
             password.setText("PASSWORD");
             password.setForeground(new Color(153,153,153));
+            passwordBlank = true;
         }
     }//GEN-LAST:event_passwordFocusLost
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
+        password.grabFocus();
     }//GEN-LAST:event_usernameActionPerformed
 
     /**
@@ -279,4 +283,8 @@ public class loginGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
+    private boolean usernameBlank = true;
+    private boolean passwordBlank = true;
+
 }

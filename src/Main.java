@@ -1,14 +1,21 @@
 import java.awt.Component;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 public abstract class Main {
+
+    public enum FormType {
+        User,
+        Supplier,
+        Hospital,
+        Item,
+        Transaction
+    }
 
     private static User currentUser;
     private static Menu menu;
     private static final loginGUI loginGUI = new loginGUI();
     private static userManagement userManagement;
-    private static UserEdit editUser;
+    private static Form form;
 
     public static void main(String[] args) {
         // try (Scanner userInput = new Scanner(System.in)) {
@@ -30,19 +37,18 @@ public abstract class Main {
         //     System.out.println("try: " + ++i);
         // } while (i < 10);
         Records.readRecords();
-        if (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
-            addNewUser(true);
-            while (editUser.isDisplayable()) {}
+        while (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
+            newForm(FormType.User,true);
         }
-        if (Records.getSupplierList().size() < 3) {
-            /* Get min 3 supplier data, GUI stuff */
+        while (Records.getSupplierList().size() < 3) {
+            newForm(FormType.Supplier,true);
         }
-        if (Records.getHospitalList().size() < 3) {
-            /* Get min 3 hospital data, GUI stuff */
+        while (Records.getHospitalList().size() < 3) {
+            newForm(FormType.Hospital,true);
         }
         /* Get all item data, GUI stuff */
         for (String itemCode : new String[] {"HS","FS","MS","GL","GW","SC"}) {
-            if (Records.getItem(itemCode) == null) {
+            while (Records.getItem(itemCode) == null) {
 
             }
         }
@@ -77,20 +83,37 @@ public abstract class Main {
     }
     public static User getUser() { return currentUser; }
 
-    public static void addNewUser() {
-        editUser = new UserEdit();
-        editUser.setVisible(true);
-    }
-
-    public static void addNewUser(boolean firstRun) {
-        editUser = new UserEdit(firstRun);
-        editUser.setVisible(true);
-    }
-
     public static void editUser(User user) {
-        editUser = new UserEdit(user);
-        editUser.setVisible(true);
+        form = form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(user);
+        form.setVisible(true);
     }
+
+    public static void editSupplier(Supplier supplier) {
+        form = form instanceof UserEdit && form.isDisplayable() ? form : new SupplierEdit(supplier);
+        form.setVisible(true);
+    }
+
+    public static void newForm(FormType formType) {
+        form = switch (formType) {
+            case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
+            case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit();
+            case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit();
+            case Item -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
+            case Transaction -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
+        };
+        form.setVisible(true);
+    }
+    public static void newForm(FormType formType, boolean firstRun) {
+        form = switch (formType) {
+            case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
+            case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit(firstRun);
+            case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit(firstRun);
+            case Item -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
+            case Transaction -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
+        };
+        form.setVisible(true);
+    }
+
 
     public static void showError(Component parentComponent,String errorMsg) {
         JOptionPane.showMessageDialog(parentComponent, errorMsg,"Error",JOptionPane.ERROR_MESSAGE);

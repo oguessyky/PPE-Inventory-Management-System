@@ -114,8 +114,7 @@ public class UserEdit extends Form {
                     } else if (!password.equals(passwordConfirm)) {
                         Main.showError(this, "Password mismatch!");
                     } else {
-                        User newUser = new User(userID, name, password, userType);
-                        Records.addUser(newUser);
+                        Records.addUser(new User(userID, name, password, userType));
                         Records.updateRecords();
                         this.dispose();
                         if (editType != EditType.FirstRun) {

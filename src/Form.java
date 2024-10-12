@@ -1,5 +1,3 @@
-
-import java.awt.TextField;
 import javax.swing.*;
 
 /*
@@ -66,7 +64,6 @@ public abstract class Form extends JFrame {
                     .addComponent(inputFields[idx], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18);
         }
-        
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -163,8 +160,6 @@ public abstract class Form extends JFrame {
             button.setText((String)value);
         }
     }
-
-
 
     protected JButton backButton;
     protected JButton confirmButton;
