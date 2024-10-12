@@ -39,10 +39,12 @@ public abstract class Partner {
     public String getPartnerCode() { return partnerCode; }
     public String getName() { return name; }
     public String getAddress() { return address; }
+    public Status getStatus() { return status; }
 
     /* setters */
     public void setName(String name) { this.name = name; }
     public void setAddress(String address) { this.address = address; }
+    public void setInactive() { this.status = Status.Inactive; }
 
     /* display text */
     @Override

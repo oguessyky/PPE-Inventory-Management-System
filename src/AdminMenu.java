@@ -7,12 +7,12 @@
  *
  * @author User
  */
-public class Admin_Menu extends Menu {
+public class AdminMenu extends Menu {
 
     /**
      * Creates new form Admin_Menu
      */
-    public Admin_Menu() {
+    public AdminMenu() {
         initComponents();
     }
 
@@ -58,6 +58,7 @@ public class Admin_Menu extends Menu {
         hospitalManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
         hospitalManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         hospitalManagement_menu.setText("Hospital management");
+        hospitalManagement_menu.addActionListener((evt) -> { Main.hideMenu(); Main.manage(Main.DataType.Hospital); });
 
         inventoryManagement_menu.setBackground(new java.awt.Color(0, 204, 204));
         inventoryManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
@@ -141,7 +142,7 @@ public class Admin_Menu extends Menu {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin_Menu().setVisible(true);
+                new AdminMenu().setVisible(true);
             }
         });
         
@@ -157,13 +158,13 @@ public class Admin_Menu extends Menu {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
     }

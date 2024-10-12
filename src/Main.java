@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 
 public abstract class Main {
 
-    public enum FormType {
+    public enum DataType {
         User,
         Supplier,
         Hospital,
@@ -16,6 +16,7 @@ public abstract class Main {
     private static final loginGUI loginGUI = new loginGUI();
     private static userManagement userManagement;
     private static EditForm form;
+    private static DataTable dataTable;
 
     public static void main(String[] args) {
         // try (Scanner userInput = new Scanner(System.in)) {
@@ -38,13 +39,13 @@ public abstract class Main {
         // } while (i < 10);
         Records.readRecords();
         while (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
-            newForm(FormType.User,true);
+            newForm(DataType.User,true);
         }
         while (Records.getSupplierList().size() < 3) {
-            newForm(FormType.Supplier,true);
+            newForm(DataType.Supplier,true);
         }
         while (Records.getHospitalList().size() < 3) {
-            newForm(FormType.Hospital,true);
+            newForm(DataType.Hospital,true);
         }
         /* Get all item data, GUI stuff */
         for (String itemCode : new String[] {"HC","FS","MS","GL","GW","SC"}) {
@@ -63,7 +64,7 @@ public abstract class Main {
         currentUser = user;
         switch (user.getUserType()) {
             case Admin -> {
-                menu = new Admin_Menu();
+                menu = new AdminMenu();
             }
             case Staff -> {
 
@@ -78,6 +79,17 @@ public abstract class Main {
     public static void hideMenu() {
         menu.setVisible(false);
     }
+
+    public static void manage(DataType dataType) {
+        dataTable = switch (dataType) {
+            case User -> dataTable instanceof UserTable && dataTable.isDisplayable() ? dataTable : new UserTable();
+            case Supplier -> dataTable instanceof UserTable && dataTable.isDisplayable() ? dataTable : new HospitalTable();
+            case Hospital -> dataTable instanceof HospitalTable && dataTable.isDisplayable() ? dataTable : new HospitalTable();
+            default -> throw new AssertionError("Incompatible form type");
+        };
+        dataTable.setVisible(true);
+    }
+
     public static void manageUser() {
         userManagement = new userManagement();
         userManagement.setVisible(true);
@@ -94,7 +106,12 @@ public abstract class Main {
         form.setVisible(true);
     }
 
-    public static void newForm(FormType formType) {
+    public static void editHospital(Hospital hospital) {
+        form = form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit(hospital);
+        form.setVisible(true);
+    }
+
+    public static void newForm(DataType formType) {
         form = switch (formType) {
             case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
             case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit();
@@ -103,7 +120,7 @@ public abstract class Main {
         };
         form.setVisible(true);
     }
-    public static void newForm(FormType formType, boolean firstRun) {
+    public static void newForm(DataType formType, boolean firstRun) {
         form = switch (formType) {
             case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
             case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit(firstRun);
