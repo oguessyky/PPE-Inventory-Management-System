@@ -48,8 +48,14 @@ public class Item {
     public void addQuantity(int quantity) { this.quantity += quantity; }
     public void removeQuantity(int quantity) { this.quantity -= quantity; }
 
+    /* display text */
     @Override
     public String toString() {
+        return String.format("%s (%s)", itemCode, name);
+    }
+
+    /* record storing text */
+    public String toRecordText() {
         return String.format("%s;%s;%s;%d", itemCode, name, supplier.getPartnerCode(), quantity);
     }
 }

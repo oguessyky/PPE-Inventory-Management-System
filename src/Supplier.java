@@ -1,8 +1,9 @@
 public class Supplier extends Partner {
+    private static int newSupplierCode;
     public Supplier(String name, String address) {
-        super("S%03d", name, address);
+        super(String.format("S%03d", ++newSupplierCode), name, address);
     }
     public Supplier(String name, String address, Status status) {
-        super("S%03d", name, address, status);
+        super(String.format("S%03d", ++newSupplierCode), name, address, status);
     }
 }

@@ -1,8 +1,9 @@
 public class Hospital extends Partner {
+    private static int newHospitalCode;
     public Hospital(String name, String address) {
-        super("H%03d", name, address);
+        super(String.format("H%03d", ++newHospitalCode), name, address);
     }
     public Hospital(String name, String address, Status status) {
-        super("S%03d", name, address, status);
+        super(String.format("H%03d", ++newHospitalCode), name, address, status);
     }
 }

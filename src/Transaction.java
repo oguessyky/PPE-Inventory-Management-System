@@ -68,8 +68,15 @@ public class Transaction {
     public Partner getPartner() { return partner; }
     public Date getDate() { return date; }
 
+    /* display text */
     @Override
     public String toString() {
         return String.format("%s;%d;%s;%s;%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
     }
+
+    /* record storing text */
+    public String toRecordText() {
+        return String.format("%s;%d;%s;%s;%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
+    }
+
 }

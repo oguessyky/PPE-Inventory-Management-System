@@ -47,9 +47,10 @@ public abstract class Main {
             newForm(FormType.Hospital,true);
         }
         /* Get all item data, GUI stuff */
-        for (String itemCode : new String[] {"HS","FS","MS","GL","GW","SC"}) {
+        for (String itemCode : new String[] {"HC","FS","MS","GL","GW","SC"}) {
             while (Records.getItem(itemCode) == null) {
-
+                addItem(itemCode);
+                while (form.isDisplayable()) {}
             }
         }
 
@@ -98,8 +99,7 @@ public abstract class Main {
             case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
             case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit();
             case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit();
-            case Item -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
-            case Transaction -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit();
+            default -> throw new AssertionError("Incompatible form type");
         };
         form.setVisible(true);
     }
@@ -108,9 +108,22 @@ public abstract class Main {
             case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
             case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit(firstRun);
             case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit(firstRun);
-            case Item -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
-            case Transaction -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(firstRun);
+            default -> throw new AssertionError("Incompatible form type");
         };
+        form.setVisible(true);
+    }
+
+    public static void addItem(String itemCode) {
+        form = form instanceof ItemEdit && form.isDisplayable() ? form : new ItemEdit(itemCode,
+        switch (itemCode) {
+            case "HC" -> "Head Cover";
+            case "FS" -> "Face Shield";
+            case "MS" -> "Mask";
+            case "GL" -> "Gloves";
+            case "GW" -> "Gown";
+            case "SC" -> "Shoe Covers";
+            default -> throw new AssertionError("Invalid item code");
+        });
         form.setVisible(true);
     }
 

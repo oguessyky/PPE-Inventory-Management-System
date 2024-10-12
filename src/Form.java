@@ -63,7 +63,9 @@ public abstract class Form extends JFrame {
                     .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputFields[idx], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18);
+            inputFields[idx].setFocusTraversalKeysEnabled(true);
         }
+        
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -145,6 +147,8 @@ public abstract class Form extends JFrame {
             return textField.getText();
         } else if (input instanceof JComboBox comboBox) {
             return comboBox.getSelectedItem();
+        } else if (input instanceof JSpinner spinner) {
+            return spinner.getValue();
         }
 
         return null;

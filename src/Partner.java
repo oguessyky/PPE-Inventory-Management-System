@@ -6,7 +6,6 @@ public abstract class Partner {
         Inactive
     }
     /* attributes */
-    protected static int newPartnerCode;
     protected final String partnerCode;
     protected String name, address;
     protected Status status;
@@ -17,18 +16,20 @@ public abstract class Partner {
     public static final Comparator<Partner> AddressComparator = Comparator.comparing(Partner::getAddress);
 
     /* Predicates for filtering */
+    public static final Predicate<Partner> CodeContains(String s) { return (partner -> partner.partnerCode.contains(s)); }
     public static final Predicate<Partner> NameContains(String s) { return (partner -> partner.name.contains(s)); }
     public static final Predicate<Partner> AddressContains(String s) { return (partner -> partner.address.contains(s)); }
+    public static final Predicate<Partner> IsActive() { return (partner -> partner.status == Status.Active); }
 
     /* constructor */
-    public Partner(String partnerCodeFormat, String name, String address) {
-        this.partnerCode = String.format(partnerCodeFormat,newPartnerCode++);
+    public Partner(String partnerCode, String name, String address) {
+        this.partnerCode = partnerCode;
         this.name = name;
         this.address = address;
         this.status = Status.Active;
     }
-    public Partner(String partnerCodeFormat, String name, String address, Status status) {
-        this.partnerCode = String.format(partnerCodeFormat,newPartnerCode++);
+    public Partner(String partnerCode, String name, String address, Status status) {
+        this.partnerCode = partnerCode;
         this.name = name;
         this.address = address;
         this.status = status;
@@ -43,8 +44,15 @@ public abstract class Partner {
     public void setName(String name) { this.name = name; }
     public void setAddress(String address) { this.address = address; }
 
+    /* display text */
     @Override
     public String toString() {
-        return String.format("%s;%s;%s", partnerCode, name, address);
+        return String.format("%s (%s)", partnerCode, name);
     }
+
+    /* record storing text */
+    public String toRecordText() {
+        return String.format("%s;%s;%s", name, address, status);
+    }
+
 }

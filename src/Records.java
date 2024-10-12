@@ -40,7 +40,8 @@ public abstract class Records {
         try (Scanner recordReader = new Scanner(SUPPLIER_FILE)) {
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[;]");
-                supplierList.add(new Supplier(parameters[0],parameters[1]));
+                Supplier.Status status = Supplier.Status.valueOf(parameters[2]);
+                supplierList.add(new Supplier(parameters[0],parameters[1],status));
             }
         }
     }
@@ -49,7 +50,8 @@ public abstract class Records {
         try (Scanner recordReader = new Scanner(HOSPITAL_FILE)) {
             while (recordReader.hasNextLine()) {
                 parameters = recordReader.nextLine().split("[;]");
-                hospitalList.add(new Hospital(parameters[0],parameters[1]));
+                Hospital.Status status = Hospital.Status.valueOf(parameters[2]);
+                hospitalList.add(new Hospital(parameters[0],parameters[1],status));
             }
         }
     }
@@ -93,27 +95,27 @@ public abstract class Records {
     /* Writing records into file */
     private static void updateUsers() throws FileNotFoundException {
         try (PrintWriter recordWriter = new PrintWriter(USER_FILE)) {
-            userList.forEach(user -> recordWriter.println(user));
+            userList.forEach(user -> recordWriter.println(user.toRecordText()));
         }
     }
     private static void updateSuppliers() throws FileNotFoundException {
         try (PrintWriter recordWriter = new PrintWriter(SUPPLIER_FILE)) {
-            supplierList.forEach(supplier -> recordWriter.println(supplier));
+            supplierList.forEach(supplier -> recordWriter.println(supplier.toRecordText()));
         }
     }
     private static void updateHospitals() throws FileNotFoundException {
         try (PrintWriter recordWriter = new PrintWriter(HOSPITAL_FILE)) {
-            hospitalList.forEach(hospital -> recordWriter.println(hospital));
+            hospitalList.forEach(hospital -> recordWriter.println(hospital.toRecordText()));
         }
     }
     private static void updateItems() throws FileNotFoundException {
         try (PrintWriter recordWriter = new PrintWriter(ITEM_FILE)) {
-            itemList.forEach(item -> recordWriter.println(item));
+            itemList.forEach(item -> recordWriter.println(item.toRecordText()));
         }
     }
     private static void updateTransactions() throws FileNotFoundException {
         try (PrintWriter recordWriter = new PrintWriter(TRANSACTION_FILE)) {
-            transactionList.forEach(transaction -> recordWriter.println(transaction));
+            transactionList.forEach(transaction -> recordWriter.println(transaction.toRecordText()));
         }
     }
     public static void updateRecords() {
@@ -145,17 +147,17 @@ public abstract class Records {
     }
 
     public static ArrayList<Supplier> getSupplierList() { return supplierList; }
-    public static ArrayList<Supplier> getSupplierList(Comparator<Supplier> sorter) {
+    public static ArrayList<Supplier> getSupplierList(Comparator<Partner> sorter) {
         ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
         outputList.sort(sorter);
         return outputList;
     }
-    public static ArrayList<Supplier> getSupplierList(Predicate<Supplier> filter) {
+    public static ArrayList<Supplier> getSupplierList(Predicate<Partner> filter) {
         ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
         outputList.removeIf(Predicate.not(filter));
         return outputList;
     }
-    public static ArrayList<Supplier> getSupplierList(Predicate<Supplier> filter, Comparator<Supplier> sorter) {
+    public static ArrayList<Supplier> getSupplierList(Predicate<Partner> filter, Comparator<Partner> sorter) {
         ArrayList<Supplier> outputList = new ArrayList<>(supplierList);
         outputList.removeIf(Predicate.not(filter));
         outputList.sort(sorter);
@@ -163,17 +165,17 @@ public abstract class Records {
     }
 
     public static ArrayList<Hospital> getHospitalList() { return hospitalList; }
-    public static ArrayList<Hospital> getHospitalList(Comparator<Hospital> sorter) {
+    public static ArrayList<Hospital> getHospitalList(Comparator<Partner> sorter) {
         ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
         outputList.sort(sorter);
         return outputList;
     }
-    public static ArrayList<Hospital> getHospitalList(Predicate<Hospital> filter) {
+    public static ArrayList<Hospital> getHospitalList(Predicate<Partner> filter) {
         ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
         outputList.removeIf(Predicate.not(filter));
         return outputList;
     }
-    public static ArrayList<Hospital> getHospitalList(Predicate<Hospital> filter, Comparator<Hospital> sorter) {
+    public static ArrayList<Hospital> getHospitalList(Predicate<Partner> filter, Comparator<Partner> sorter) {
         ArrayList<Hospital> outputList = new ArrayList<>(hospitalList);
         outputList.removeIf(Predicate.not(filter));
         outputList.sort(sorter);

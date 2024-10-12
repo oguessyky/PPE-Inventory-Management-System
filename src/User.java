@@ -41,8 +41,14 @@ public class User {
     public void setPassword(String password) { this.password = password; }
     public void setUserType(Type userType) { this.userType = userType; }
 
+    /* display text */
     @Override
     public String toString() {
+        return String.format("%s (%s)", userID, name);
+    }
+
+    public String toRecordText() {
         return String.format("%s;%s;%s;%s", userID, name, password, userType);
     }
+
 }
