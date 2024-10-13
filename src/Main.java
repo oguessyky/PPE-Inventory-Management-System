@@ -14,7 +14,7 @@ public abstract class Main {
 
     private static User currentUser;
     private static Menu menu;
-    private static final loginGUI loginGUI = new loginGUI();
+    private static loginGUI loginGUI = new loginGUI();
     private static EditForm form;
     private static DataTable dataTable;
 
@@ -67,8 +67,7 @@ public abstract class Main {
                 menu = new AdminMenu();
             }
             case Staff -> {
-                menu = new AdminMenu();
-                // todo staff page
+                menu = new StaffMenu();
             }
         }
         showMenu();
@@ -140,6 +139,17 @@ public abstract class Main {
         form.setVisible(true);
     }
 
+    public static void updateProfile() {
+        form = form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(currentUser,true);
+        form.setVisible(true);
+    }
+
+    public static void logout() {
+        menu.dispose();
+        currentUser = null;
+        loginGUI = new loginGUI();
+        loginGUI.setVisible(true);
+    }
 
     public static void showError(Component parentComponent,String errorMsg) {
         JOptionPane.showMessageDialog(parentComponent, errorMsg,"Error",JOptionPane.ERROR_MESSAGE);

@@ -3,6 +3,7 @@ public class UserEdit extends EditForm {
 
     private final EditType editType;
     private User user;
+    private boolean editSelf = false;
 
     public UserEdit() {
         super("ADD USER",
@@ -68,6 +69,45 @@ public class UserEdit extends EditForm {
         });
     }
 
+    public UserEdit(User user, boolean editSelf) {
+        super(editSelf ? "UPDATE PROFILE" : "EDIT USER",
+        editSelf ? new String[] {
+            "User ID :",
+            "Name :",
+            "Password :",
+            "New Password :",
+            "Confirm New Password :"
+        } : new String[] {
+            "User ID :",
+            "Name :",
+            "User Type :",
+            "Reset Password :"
+        },
+        editSelf ? new JComponent[] {
+            new JTextField(user.getUserID()),
+            new JTextField(user.getName()),
+            new JPasswordField(),
+            new JPasswordField(),
+            new JPasswordField()
+        } : new JComponent[] {
+            new JTextField(user.getUserID()),
+            new JTextField(user.getName()),
+            new JComboBox<>(new User.Type[] { User.Type.Admin, User.Type.Staff }),
+            new JButton("Reset Password")
+        });
+        this.editType = EditType.Update;
+        this.user = user;
+        this.editSelf = editSelf;
+        if (!editSelf) {
+            setInputOf(2, user.getUserType());
+            ((JButton)inputFields[3]).addActionListener((evt) -> {
+                user.setPassword("12345678");
+                Records.updateRecords();
+                JOptionPane.showMessageDialog(this, "Password reset successful.","Info",JOptionPane.INFORMATION_MESSAGE);
+            });
+        }
+    }
+
 
     @Override
     protected void exit() {
@@ -79,8 +119,6 @@ public class UserEdit extends EditForm {
     protected void submit() {
         String userID = (String)getInputOf(0);
         String name = (String)getInputOf(1);
-        User.Type userType = (User.Type)getInputOf(2);
-
         if (userID.isBlank()) {
             Main.showError(this, "UserID cannot be blank!");
         } else if (userID.contains(";")) {
@@ -91,7 +129,28 @@ public class UserEdit extends EditForm {
             Main.showError(this, "Name cannot be blank!");
         } else if (name.contains(";")) {
             Main.showError(this, "Invalid Name!"); // can further restrict via regex if needed
+        } else if (editSelf) {
+            String password = (String)getInputOf(2);
+            String newPassword = (String)getInputOf(3);
+            String newPasswordConfirm = (String)getInputOf(4);
+            if (!password.equals(user.getPassword())) {
+                Main.showError(this, "Incorrect password!");
+            } else if (newPassword.contains(";")) {
+                Main.showError(this, "Please choose another password."); // LMAO i cannot think of a reason to stop users from using ; in their password
+            } else if (!newPassword.equals(newPasswordConfirm)) {
+                Main.showError(this, "Password mismatch!");
+            } else {
+                user.setUserID(userID);
+                user.setName(name);
+                if (!newPassword.isBlank()) {
+                    user.setPassword(newPassword);
+                }
+                Records.updateRecords();
+                dispose();
+                Main.showMenu();
+            }
         } else {
+            User.Type userType = (User.Type)getInputOf(2);
             switch (editType) {
                 case Update -> {
                     user.setUserID(userID);
@@ -119,6 +178,7 @@ public class UserEdit extends EditForm {
                     }
                 }
             }
+
         }
     }
 }

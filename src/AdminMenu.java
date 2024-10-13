@@ -31,9 +31,15 @@ public class AdminMenu extends Menu {
         menuButtons[3].setForeground(new java.awt.Color(255, 255, 255));
         menuButtons[3].addActionListener((evt) -> { Main.hideMenu(); Main.manage(Main.DataType.Item); });
 
-    }
+        menuButtons[4].setBackground(new java.awt.Color(0, 204, 204));
+        menuButtons[4].setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
+        menuButtons[4].setForeground(new java.awt.Color(255, 255, 255));
+        menuButtons[4].addActionListener((evt) -> { Main.hideMenu(); Main.updateProfile(); });
 
-    public static void main(String[] args) {
-        new AdminMenu().setVisible(true);
+        menuButtons[5].setBackground(new java.awt.Color(255, 20, 20));
+        menuButtons[5].setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
+        menuButtons[5].setForeground(new java.awt.Color(255, 255, 255));
+        menuButtons[5].addActionListener((evt) -> { Main.logout(); });
+
     }
 }
