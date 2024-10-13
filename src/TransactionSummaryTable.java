@@ -40,7 +40,7 @@ public class TransactionSummaryTable extends DataTable {
             },
             new JButton[] {
                 new JButton("View Stock"),
-                new JButton("View Individual"),
+                new JButton("View Individual Transactions"),
                 new JButton("Receive Items"),
                 new JButton("Distribute Items")
             }
@@ -66,12 +66,12 @@ public class TransactionSummaryTable extends DataTable {
 
         tableButtons[0].addActionListener((evt) -> {
             dispose();
-            // todo link page
+            Main.manage(Main.DataType.Item);
         });
 
         tableButtons[1].addActionListener((evt) -> {
             dispose();
-            // todo link page
+            Main.manage(Main.DataType.Transaction);
         });
 
         tableButtons[2].addActionListener((evt) -> {
@@ -105,12 +105,6 @@ public class TransactionSummaryTable extends DataTable {
     }
 
     @Override
-    protected void exit() {
-        dispose();
-        Main.showMenu();
-    }
-
-    @Override
     protected void dataEditSetEnabled(boolean enabled) {}
 
     @Override
@@ -126,83 +120,48 @@ public class TransactionSummaryTable extends DataTable {
             }
         }
         String[] newHeader = tableHeader.clone();
-        Comparator<Transaction> sorter = switch (selectedColumn) {
-            case 0 -> Transaction.ItemComparator;
-            case 1 -> Transaction.ItemComparator(Item.NameComparator);
-            case 2 -> Transaction.TypeComparator;
-            case 3 -> Transaction.PartnerComparator;
-            case 4 -> Transaction.PartnerComparator(Partner.NameComparator);
-            case 5 -> null;
-            case 6 -> null;
-            case 7 -> null;
-            default -> throw new IndexOutOfBoundsException("Selected Column out of bounds");
-        };
-
-        Comparator<Transaction.Summary.SummaryContent> sorter2 = switch (selectedColumn) {
-            case 0 -> null;
-            case 1 -> null;
-            case 2 -> null;
-            case 3 -> null;
-            case 4 -> null;
-            case 5 -> Transaction.Summary.totalComparator;
-            case 6 -> Transaction.Summary.averageComparator;
-            case 7 -> Transaction.Summary.countComparator;
+        Comparator<Transaction.Summary> sorter = switch (selectedColumn) {
+            case 0 -> Transaction.Summary.ItemComparator;
+            case 1 -> Transaction.Summary.ItemComparator(Item.NameComparator);
+            case 2 -> Transaction.Summary.TypeComparator;
+            case 3 -> Transaction.Summary.PartnerComparator;
+            case 4 -> Transaction.Summary.PartnerComparator(Partner.NameComparator);
+            case 5 -> Transaction.Summary.TotalComparator;
+            case 6 -> Transaction.Summary.AverageComparator;
+            case 7 -> Transaction.Summary.CountComparator;
             default -> throw new IndexOutOfBoundsException("Selected Column out of bounds");
         };
 
         if (orderASC) {
             newHeader[selectedColumn] += " \u25B2";
         } else {
-            if (sorter != null) {
-                sorter = sorter.reversed();
-            } else {
-                sorter2 = sorter2.reversed();
-            }
+            sorter = sorter.reversed();
             newHeader[selectedColumn] += " \u25BC";
         }
-        if (sorter != null) {
-            transactionList = Records.getTransactionList(filter,sorter);
-        } else {
-            transactionList = Records.getTransactionList(filter);
-        }
-
-        Set<Map.Entry<Transaction.Summary.SummaryKey,Transaction.Summary.SummaryContent>> summaryList;
-        if (sorter2 != null) {
-            summaryList = new Transaction.Summary(transactionList).getSummaryList(sorter2);
-        } else {
-            summaryList = new Transaction.Summary(transactionList).getSummaryList();
-        }
+        summaryList = Transaction.Summary.getSummaryList(Records.getTransactionList(filter),sorter);
 
         data = new Object[summaryList.size()][tableHeader.length];
-        Transaction.Summary.SummaryKey summaryKey;
-        Transaction.Summary.SummaryContent summaryContent;
+        Transaction.Summary summary;
         Item item;
         Partner partner;
-        int idx = 0;
 
-        for (Map.Entry<Transaction.Summary.SummaryKey,Transaction.Summary.SummaryContent> summary : summaryList) {
-            summaryKey = summary.getKey();
-            summaryContent = summary.getValue();
-            item = summaryKey.getItem();
-            partner = summaryKey.getPartner();
-            data[idx++] = new Object[] {
+        for (int idx = 0; idx < summaryList.size(); idx++) {
+            summary = summaryList.get(idx);
+            item = summary.getItem();
+            partner = summary.getPartner();
+            data[idx] = new Object[] {
                 item.getItemCode(),
                 item.getName(),
-                (partner instanceof Supplier) ? Transaction.Type.Received : Transaction.Type.Distributed,
+                summary.getType(),
                 partner.getPartnerCode(),
                 partner.getName(),
-                summaryContent.getTotalQuantity(),
-                summaryContent.getAverageQuantity(),
-                summaryContent.getCount()
+                summary.getTotalQuantity(),
+                summary.getAverageQuantity(),
+                summary.getCount()
             };
         }
         tableModel.setDataVector(data, newHeader);
     }
-    public static void main(String[] args) {
-        Records.readRecords();
-        new TransactionSummaryTable().setVisible(true);
-        System.out.print(Records.getTransactionList());
-    }
 
-    ArrayList<Transaction> transactionList;
+    ArrayList<Transaction.Summary> summaryList;
 }

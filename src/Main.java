@@ -8,7 +8,8 @@ public abstract class Main {
         Supplier,
         Hospital,
         Item,
-        Transaction
+        Transaction,
+        TransactionSummary
     }
 
     private static User currentUser;
@@ -86,7 +87,9 @@ public abstract class Main {
             case User -> dataTable instanceof UserTable && dataTable.isDisplayable() ? dataTable : new UserTable();
             case Supplier -> dataTable instanceof SupplierTable && dataTable.isDisplayable() ? dataTable : new SupplierTable();
             case Hospital -> dataTable instanceof HospitalTable && dataTable.isDisplayable() ? dataTable : new HospitalTable();
-            default -> throw new AssertionError("Incompatible form type");
+            case Item -> dataTable instanceof ItemTable && dataTable.isDisplayable() ? dataTable : new ItemTable();
+            case Transaction -> dataTable instanceof TransactionTable && dataTable.isDisplayable() ? dataTable : new TransactionTable();
+            case TransactionSummary -> dataTable instanceof TransactionSummaryTable && dataTable.isDisplayable() ? dataTable : new TransactionSummaryTable();
         };
         dataTable.setVisible(true);
     }
@@ -100,6 +103,7 @@ public abstract class Main {
             case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit((Hospital)data);
             case Item -> form instanceof ItemEdit && form.isDisplayable() ? form : new ItemEdit((Item)data);
             case Transaction -> form instanceof TransactionEdit && form.isDisplayable() ? form : new TransactionEdit((Transaction.Type)data);
+            default -> throw new AssertionError("Incompatible form type");
         };
         form.setVisible(true);
     }

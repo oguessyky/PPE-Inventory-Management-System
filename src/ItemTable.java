@@ -44,7 +44,7 @@ public class ItemTable extends DataTable {
 
         tableButtons[0].addActionListener((evt) -> {
             dispose();
-            // todo link page
+            Main.manage(Main.DataType.Transaction);
         });
 
         tableButtons[1].addActionListener((evt) -> {
@@ -63,12 +63,6 @@ public class ItemTable extends DataTable {
         });
 
         tableButtons[1].setVisible(Main.getUser().getUserType() == User.Type.Admin);
-    }
-
-    @Override
-    protected void exit() {
-        dispose();
-        Main.showMenu();
     }
 
     @Override
@@ -117,12 +111,6 @@ public class ItemTable extends DataTable {
             };
         }
         tableModel.setDataVector(data, newHeader);
-    }
-    public static void main(String[] args) {
-        Records.readRecords();
-        Main.initializeMenu(Records.getUser("21"));
-        Main.hideMenu();
-        new ItemTable().setVisible(true);
     }
 
     ArrayList<Item> itemList;

@@ -52,12 +52,6 @@ public class SupplierTable extends DataTable {
     }
 
     @Override
-    protected void exit() {
-        dispose();
-        Main.showMenu();
-    }
-
-    @Override
     protected void dataEditSetEnabled(boolean enabled) {
         tableButtons[1].setEnabled(enabled);
         tableButtons[2].setEnabled(enabled);

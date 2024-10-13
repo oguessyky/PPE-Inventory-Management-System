@@ -176,7 +176,7 @@ public abstract class DataTable extends JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(buttonSequentialGroup)
-                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
+                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
@@ -188,7 +188,7 @@ public abstract class DataTable extends JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(buttonParallelGroup))
                     .addComponent(searchForm))
@@ -203,7 +203,10 @@ public abstract class DataTable extends JFrame {
         updateTableData();
     }
 
-    protected abstract void exit();
+    protected void exit() {
+        dispose();
+        Main.showMenu();
+    }
     
     protected abstract void updateTableData();
 

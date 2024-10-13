@@ -71,12 +71,12 @@ public class TransactionTable extends DataTable {
 
         tableButtons[0].addActionListener((evt) -> {
             dispose();
-            // todo link page
+            Main.manage(Main.DataType.Item);
         });
 
         tableButtons[1].addActionListener((evt) -> {
             dispose();
-            // todo link page
+            Main.manage(Main.DataType.TransactionSummary);
         });
 
         tableButtons[2].addActionListener((evt) -> {
@@ -107,12 +107,6 @@ public class TransactionTable extends DataTable {
 
         ((JSpinner)searchFields[6]).setEditor(new JSpinner.DateEditor((JSpinner)searchFields[6],"dd/MM/yyyy"));
         ((JSpinner)searchFields[7]).setEditor(new JSpinner.DateEditor((JSpinner)searchFields[7],"dd/MM/yyyy"));
-    }
-
-    @Override
-    protected void exit() {
-        dispose();
-        Main.showMenu();
     }
 
     @Override
@@ -173,11 +167,6 @@ public class TransactionTable extends DataTable {
             };
         }
         tableModel.setDataVector(data, newHeader);
-    }
-    public static void main(String[] args) {
-        Records.readRecords();
-        new TransactionTable().setVisible(true);
-        System.out.print(Records.getTransactionList());
     }
 
     ArrayList<Transaction> transactionList;

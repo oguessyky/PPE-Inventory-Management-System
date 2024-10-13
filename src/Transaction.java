@@ -91,84 +91,78 @@ public class Transaction {
 
     public static class Summary {
 
-        private static final ArrayList<SummaryKey> summaryKeys = new ArrayList<>();
-        public static class SummaryKey {
-            private final Item item;
-            private final Partner partner;
-            public SummaryKey(Item item, Partner partner) {
-                this.item = item;
-                this.partner = partner;
-            }
-            public Item getItem() { return item; }
-            public Partner getPartner() { return partner; }
+        private final Item item;
+        private final Partner partner;
+        private final Type type;
+        private int totalQuantity, count;
+
+        private Summary(Item item, Partner partner, Type type) {
+            this.item = item;
+            this.partner = partner;
+            this.type = type;
+            totalQuantity = 0;
+            count = 0;
         }
 
-        public static class SummaryContent {
-            private int totalQuantity, count;
-            public SummaryContent() {
-                totalQuantity = 0;
-                count = 0;
-            }
-            public SummaryContent(int totalQuantity, int count) {
-                this.totalQuantity = totalQuantity;
-                this.count = count;
-            }
-            public void add(int quantity) {
-                totalQuantity += quantity;
-                count++;
-            }
-            public int getTotalQuantity() { return totalQuantity; }
-            public double getAverageQuantity() { return totalQuantity/count; }
-            public int getCount() { return count; }
+        public Item getItem() { return item; }
+        public Partner getPartner() { return partner; }
+        public Type getType() { return type; }
+        public int getTotalQuantity() { return totalQuantity; }
+        public double getAverageQuantity() { return totalQuantity/count; }
+        public int getCount() { return count; }
+
+        public void add(int quantity) {
+            totalQuantity += quantity;
+            count++;
         }
 
-        private static SummaryKey getSummaryKey(Item item, Partner partner) {
-            for (SummaryKey summaryKey : summaryKeys) {
-                if (summaryKey.item == item && summaryKey.partner == partner) return summaryKey;
-            }
-            SummaryKey summaryKey = new SummaryKey(item, partner);
-            summaryKeys.add(summaryKey);
-            return summaryKey;
-        }
+        public static final Comparator<Summary> ItemComparator = Comparator.comparing(Summary::getItem,Item.CodeComparator);
+        public static final Comparator<Summary> PartnerComparator = Comparator.comparing(Summary::getPartner,Partner.CodeComparator);
+        public static final Comparator<Summary> TypeComparator = Comparator.comparing(Summary::getType);
+        public static final Comparator<Summary> TotalComparator = Comparator.comparing(Summary::getTotalQuantity);
+        public static final Comparator<Summary> AverageComparator = Comparator.comparing(Summary::getAverageQuantity);
+        public static final Comparator<Summary> CountComparator = Comparator.comparing(Summary::getCount);
 
-        private HashMap<SummaryKey,SummaryContent> summaryList = new HashMap<>();
+        public static final Comparator<Summary> ItemComparator(Comparator<Item> comparator) { return Comparator.comparing(Summary::getItem,comparator); }
+        public static final Comparator<Summary> PartnerComparator(Comparator<Partner> comparator) { return Comparator.comparing(Summary::getPartner,comparator); }
 
-        public Summary(ArrayList<Transaction> transactionList) {
-            SummaryKey summaryKey;
+        public static ArrayList<Summary> getSummaryList(ArrayList<Transaction> transactionList) {
+            ArrayList<Summary> summaryList = new ArrayList<>();
             for (Transaction transaction : transactionList) {
-                summaryKey = getSummaryKey(transaction.item, transaction.partner);
-                if (summaryList.containsKey(summaryKey)) {
-                    summaryList.get(summaryKey).add(transaction.quantity);
-                } else {
-                    summaryList.put(summaryKey, new SummaryContent(transaction.quantity,1));
+                Summary newSummary = null;
+                for (Summary summary : summaryList) {
+                    if (summary.item == transaction.item && summary.partner == transaction.partner) {
+                        newSummary = summary;
+                        break;
+                    }
                 }
+                if (newSummary == null) {
+                    newSummary = new Summary(transaction.item, transaction.partner,transaction.transactionType);
+                    summaryList.add(newSummary);
+                }
+                newSummary.add(transaction.quantity);
             }
+            return summaryList;
         }
 
-        public static final Comparator<SummaryContent> totalComparator = Comparator.comparing(SummaryContent::getTotalQuantity);
-        public static final Comparator<SummaryContent> averageComparator = Comparator.comparing(SummaryContent::getAverageQuantity);
-        public static final Comparator<SummaryContent> countComparator = Comparator.comparing(SummaryContent::getCount);
-
-        public Set<Map.Entry<SummaryKey,SummaryContent>> getSummaryList() {
-            return summaryList.entrySet();
+        public static ArrayList<Summary> getSummaryList(ArrayList<Transaction> transactionList, Comparator<Summary> sorter) {
+            ArrayList<Summary> summaryList = new ArrayList<>();
+            for (Transaction transaction : transactionList) {
+                Summary newSummary = null;
+                for (Summary summary : summaryList) {
+                    if (summary.item == transaction.item && summary.partner == transaction.partner) {
+                        newSummary = summary;
+                        break;
+                    }
+                }
+                if (newSummary == null) {
+                    newSummary = new Summary(transaction.item, transaction.partner,transaction.transactionType);
+                    summaryList.add(newSummary);
+                }
+                newSummary.add(transaction.quantity);
+            }
+            summaryList.sort(sorter);
+            return summaryList;
         }
-
-        public Set<Map.Entry<SummaryKey,SummaryContent>> getSummaryList(Comparator<SummaryContent> comparator) {
-            return summaryList.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(comparator))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new))
-                .entrySet();
-        }
-    }
-
-    public static void main(String[] args) {
-        Map<Object[],Integer> test = new HashMap<>();
-        String[] a = new String[] {"test"};
-        String[] b = new String[] {"test"};
-        
-        test.put(a,1);
-        test.put(b,2);
-        System.out.println(test);
     }
 }
