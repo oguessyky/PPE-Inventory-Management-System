@@ -1,3 +1,3 @@
-666;DEMN;Active
-ASD;12345;Inactive
-I WAN;DIE;Active
+Columbia Asia Hospital - Petaling Jaya;Lot 69, Jln 13/6, Seksyen 13, 46200 Petaling Jaya, Selangor;Active
+Subang Jaya Medical Centre;No. 1, Jalan SS 12/1A, Ss 12, 47500 Subang Jaya, Selangor;Active
+Sunway Medical Centre;5, Jalan Lagoon Selatan, Bandar Sunway, 47500 Subang Jaya, Selangor;Active
