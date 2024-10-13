@@ -97,23 +97,25 @@ public abstract class DataTable extends JFrame {
         );
 
 
-        searchLabel = new JLabel("Search");
-        searchLabel.setFont(new java.awt.Font("Segoe UI", 1, 30));
+        searchTitle = new JLabel("Search");
+        searchTitle.setFont(new java.awt.Font("Segoe UI", 1, 30));
 
         searchForm = new JLayeredPane();
-        searchForm.setLayer(searchLabel, JLayeredPane.DEFAULT_LAYER);
+        searchForm.setLayer(searchTitle, JLayeredPane.DEFAULT_LAYER);
 
         GroupLayout jLayeredPane1Layout = new GroupLayout(searchForm);
         searchForm.setLayout(jLayeredPane1Layout);
 
-        GroupLayout.ParallelGroup parallelGroup = jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.LEADING);
+        GroupLayout.ParallelGroup parallelGroup = jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.CENTER);
         GroupLayout.SequentialGroup sequentialGroup = jLayeredPane1Layout.createSequentialGroup()
-            .addGap(17, 17, 17)
-            .addComponent(searchLabel, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+            .addGap(10, 10, 10)
+            .addComponent(searchTitle, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
             .addGap(30, 30, 30);
 
-        for (int idx = 0; idx < tableHeader.length; idx++) {
+        this.searchLabels = new JLabel[searchLabels.length];
+        for (int idx = 0; idx < searchLabels.length; idx++) {
             JLabel label = new JLabel(searchLabels[idx], SwingConstants.TRAILING);
+            this.searchLabels[idx] = label;
             JComponent field = searchFields[idx];
             label.setFont(new java.awt.Font("Segoe UI", 1, 12));
             searchForm.setLayer(label, JLayeredPane.DEFAULT_LAYER);
@@ -139,7 +141,7 @@ public abstract class DataTable extends JFrame {
             jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchLabel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchTitle, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -149,8 +151,7 @@ public abstract class DataTable extends JFrame {
 
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(sequentialGroup
-                .addGap(184, 184, 184))
+            .addGroup(sequentialGroup)
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -182,7 +183,7 @@ public abstract class DataTable extends JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(header, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -191,12 +192,15 @@ public abstract class DataTable extends JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(buttonParallelGroup))
                     .addComponent(searchForm))
-                .addGap(0, 0, 0))
+                .addGap(15, 15, 15))
          );
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         pack();
+
+        dataEditSetEnabled(false);
+        updateTableData();
     }
 
     protected abstract void exit();
@@ -232,7 +236,7 @@ public abstract class DataTable extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected JButton backButton;
     protected JLabel titleLabel;
-    protected JLabel searchLabel;
+    protected JLabel searchTitle;
     protected JLayeredPane searchForm;
     protected JPanel header;
     protected JScrollPane scrollPane;
@@ -244,6 +248,7 @@ public abstract class DataTable extends JFrame {
     protected int lastSelectedColumn;
     protected boolean orderASC = true;
 
+    protected JLabel[] searchLabels;
     protected JComponent[] searchFields;
     protected JButton[] tableButtons;
     protected Object[][] data = new Object[][] {};

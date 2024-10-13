@@ -10,10 +10,12 @@ public class Item {
     /* Comparators for sorting */
     public static final Comparator<Item> CodeComparator = Comparator.comparing(Item::getItemCode);
     public static final Comparator<Item> NameComparator = Comparator.comparing(Item::getName);
-    public static final Comparator<Item> SupplierComparator = Comparator.comparing(Item::getSupplier,Supplier.CodeComparator);
+    public static final Comparator<Item> SupplierCodeComparator = Comparator.comparing(Item::getSupplier,Supplier.CodeComparator);
+    public static final Comparator<Item> SupplierNameComparator = Comparator.comparing(Item::getSupplier,Supplier.NameComparator);
     public static final Comparator<Item> QuantityComparator = Comparator.comparing(Item::getQuantity);
 
     /* Predicates for filtering */
+    public static final Predicate<Item> CodeContains(String s) { return (item -> item.itemCode.contains(s)); }
     public static final Predicate<Item> NameContains(String s) { return (item -> item.name.contains(s)); }
     public static final Predicate<Item> WithMinQuantity(int quantity) { return (item -> item.quantity >= quantity); }
     public static final Predicate<Item> WithMaxQuantity(int quantity) { return (item -> item.quantity <= quantity); }
