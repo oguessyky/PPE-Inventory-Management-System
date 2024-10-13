@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author User
- */
-public class AdminMenu extends Menu {
+import javax.swing.*;
+public class MMenu extends JFrame {
 
     /**
      * Creates new form Admin_Menu
@@ -65,7 +57,6 @@ public class AdminMenu extends Menu {
         inventoryManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N
         inventoryManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         inventoryManagement_menu.setText("Inventory management");
-        inventoryManagement_menu.addActionListener((evt) -> { Main.hideMenu(); Main.manage(Main.DataType.Item); });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 

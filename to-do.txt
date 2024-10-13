@@ -12,7 +12,7 @@ User ✓
   - search ✓
   - delete users ✓
 
-Inventory
+Inventory ✓
   - item code ✓
   - supplier code ✓
   - quantity (num of boxes) ✓
@@ -24,9 +24,9 @@ Inventory
   - quantity of searched item ✓
   - track item received/distributed during a time frame (use item code (duh)) ✓
     - include supplier/hospital code, quantity n date (duh) ✓
-    - include total quantity grouped by supplier/hospital
+    - include total quantity grouped by supplier/hospital ✓
 - 1 SUPPLIER PER ITEM (also kinda dumb) ✓
-- all items:
+- all items: ✓
 HC	Head Cover ✓
 FS	Face Shield ✓
 MS	Mask ✓
@@ -34,7 +34,7 @@ GL	Gloves ✓
 GW	Gown ✓
 SC	Shoe Covers ✓
 
-Transaction
+Transaction ✓
   - item code ✓
   - transaction type (receive/distribute) ✓
   - supplier/hospital code ✓
@@ -74,14 +74,14 @@ Admin Page (inherit Staff Page)
   - add ✓
   - modify ✓
   - deprecate ✓
-- Inventory management
+- Inventory management ✓
   - Change item supplier ✓
 
 
 Staff Page
 - Profile update
-- Inventory management (with item and traansaction data)
-  - list (with filter & sort, default no filter order by quantity, item code asc)
+- Inventory management (with item and traansaction data) ✓
+  - list (with filter & sort, default no filter order by quantity, item code asc) ✓
   - receive ✓
   - distribute ✓
 - Logout
