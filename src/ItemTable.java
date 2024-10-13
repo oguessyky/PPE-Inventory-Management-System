@@ -13,8 +13,8 @@ public class ItemTable extends DataTable {
                 "Item Code :",
                 "Item Name :",
                 "Supplier :",
-                "Min Stock",
-                "Max Stock"
+                "Min Stock :",
+                "Max Stock :"
             },
             new JComponent[] {
                 new JTextField(),
@@ -30,7 +30,7 @@ public class ItemTable extends DataTable {
                 new JButton("Distribute Items")
             }
         );
-        
+
         ArrayList<Supplier> supplierList = Records.getSupplierList(Supplier.IsActive());
         supplierList.add(0,null);
         ((JComboBox<Supplier>)searchFields[2]).setModel(new DefaultComboBoxModel<>(supplierList.toArray(new Supplier[0])));
@@ -88,8 +88,8 @@ public class ItemTable extends DataTable {
         Comparator<Item> sorter = switch (selectedColumn) {
             case 0 -> Item.CodeComparator;
             case 1 -> Item.NameComparator;
-            case 2 -> Item.SupplierCodeComparator;
-            case 3 -> Item.SupplierNameComparator;
+            case 2 -> Item.SupplierComparator;
+            case 3 -> Item.SupplierComparator(Supplier.NameComparator);
             case 4 -> Item.QuantityComparator;
             default -> throw new IndexOutOfBoundsException("Selected Column out of bounds");
         };

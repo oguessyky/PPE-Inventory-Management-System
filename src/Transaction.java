@@ -25,7 +25,11 @@ public class Transaction {
     public static final Comparator<Transaction> PartnerComparator = Comparator.comparing(Transaction::getPartner,Partner.CodeComparator);
     public static final Comparator<Transaction> DateComparator = Comparator.comparing(Transaction::getDate);
 
+    public static Comparator<Transaction> ItemComparator(Comparator<Item> itemComparator) { return Comparator.comparing(Transaction::getItem,itemComparator); }
+    public static Comparator<Transaction> PartnerComparator(Comparator<Partner> partnerComparator) { return Comparator.comparing(Transaction::getPartner,partnerComparator); }
+
     /* Predicates for filtering */
+    public static final Predicate<Transaction> IDContains(String s) { return (transaction -> transaction.transactionID.contains(s)); }
     public static final Predicate<Transaction> WithMinQuantity(int quantity) { return (transaction -> transaction.quantity >= quantity); }
     public static final Predicate<Transaction> WithMaxQuantity(int quantity) { return (transaction -> transaction.quantity <= quantity); }
     public static final Predicate<Transaction> WithQuantityBetween(int minQuantity, int maxQuantity) { return (transaction -> (minQuantity <= transaction.quantity && transaction.quantity <= maxQuantity)); }

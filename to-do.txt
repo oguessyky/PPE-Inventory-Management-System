@@ -19,11 +19,11 @@ Inventory
 - store in ppe.txt ✓
 - creation only in first run (default quantity 100 ✓) ✓
 - outputs:
-  - total quantity by item code asc
-  - all items < 25 boxes
-  - quantity of searched item
-  - track item received/distributed during a time frame (use item code (duh))
-    - include supplier/hospital code, quantity n date (duh)
+  - total quantity by item code asc ✓
+  - all items < 25 boxes ✓
+  - quantity of searched item ✓
+  - track item received/distributed during a time frame (use item code (duh)) ✓
+    - include supplier/hospital code, quantity n date (duh) ✓
     - include total quantity grouped by supplier/hospital
 - 1 SUPPLIER PER ITEM (also kinda dumb) ✓
 - all items:
@@ -98,8 +98,3 @@ First time use: ✓
   - GW	Gown ✓
   - SC	Shoe Covers ✓
 
-Inventory
-- item
-  - change supplier
-- transaction
-  -

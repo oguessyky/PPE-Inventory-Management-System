@@ -10,9 +10,10 @@ public class Item {
     /* Comparators for sorting */
     public static final Comparator<Item> CodeComparator = Comparator.comparing(Item::getItemCode);
     public static final Comparator<Item> NameComparator = Comparator.comparing(Item::getName);
-    public static final Comparator<Item> SupplierCodeComparator = Comparator.comparing(Item::getSupplier,Supplier.CodeComparator);
-    public static final Comparator<Item> SupplierNameComparator = Comparator.comparing(Item::getSupplier,Supplier.NameComparator);
+    public static final Comparator<Item> SupplierComparator = Comparator.comparing(Item::getSupplier,Supplier.CodeComparator);
     public static final Comparator<Item> QuantityComparator = Comparator.comparing(Item::getQuantity);
+
+    public static Comparator<Item> SupplierComparator(Comparator<Partner> supplierComparator) { return Comparator.comparing(Item::getSupplier,supplierComparator); }
 
     /* Predicates for filtering */
     public static final Predicate<Item> CodeContains(String s) { return (item -> item.itemCode.contains(s)); }
