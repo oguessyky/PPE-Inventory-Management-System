@@ -37,7 +37,7 @@ public class TransactionEdit extends EditForm {
     @Override
     protected void exit() {
         this.dispose();
-        // todo link page
+        Main.manage(Main.DataType.Item);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TransactionEdit extends EditForm {
             Partner partner = (Partner)getInputOf(2);
             Records.addTransaction(new Transaction(item, quantity, transactionType, partner));
             this.dispose();
-            // todo link page
+            Main.manage(Main.DataType.Item);
         }
     }
 }

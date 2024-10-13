@@ -51,15 +51,15 @@ public class TransactionTable extends DataTable {
             }
         );
 
-        ArrayList<Supplier> supplierList = Records.getSupplierList(Supplier.IsActive());
+        ArrayList<Supplier> supplierList = new ArrayList<>(Records.getSupplierList(Supplier.IsActive()));
         supplierList.add(0,null);
         supplierComboBoxModel = new DefaultComboBoxModel<>(supplierList.toArray(new Supplier[0]));
 
-        ArrayList<Hospital> hospitalList = Records.getHospitalList(Supplier.IsActive());
+        ArrayList<Hospital> hospitalList = new ArrayList<>(Records.getHospitalList(Supplier.IsActive()));
         hospitalList.add(0,null);
         hospitalComboBoxModel = new DefaultComboBoxModel<>(hospitalList.toArray(new Hospital[0]));
 
-        ArrayList<Item> itemList = Records.getItemList();
+        ArrayList<Item> itemList = new ArrayList<>(Records.getItemList());
         itemList.add(0,null);
         ((JComboBox<Item>)searchFields[1]).setModel(new DefaultComboBoxModel<>(itemList.toArray(new Item[0])));
 
