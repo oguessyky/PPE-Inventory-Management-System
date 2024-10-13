@@ -7,6 +7,8 @@ public class AdminMenu extends Menu {
             new JButton("Supplier management"),
             new JButton("Hospital management"),
             new JButton("Inventory management"),
+            new JButton("Update profile"),
+            new JButton("Logout")
         });
 
         menuButtons[0].setBackground(new java.awt.Color(0, 51, 102));

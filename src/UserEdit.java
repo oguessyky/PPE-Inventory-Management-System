@@ -1,8 +1,8 @@
 import javax.swing.*;
 public class UserEdit extends EditForm {
 
-    EditType editType;
-    User user;
+    private final EditType editType;
+    private User user;
 
     public UserEdit() {
         super("ADD USER",

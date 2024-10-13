@@ -18,7 +18,7 @@ public class TransactionEdit extends EditForm {
         },
         new JComponent[] {
             new JComboBox<>(Records.getItemList().toArray(new Item[0])),
-            new JSpinner(new SpinnerNumberModel(0,0,null,1)),
+            new JSpinner(new SpinnerNumberModel(1,1,null,1)),
             new JComboBox<>(switch (transactionType) {
                 case Received -> Records.getSupplierList(Supplier.IsActive()).toArray(new Supplier[0]);
                 case Distributed -> Records.getHospitalList(Hospital.IsActive()).toArray(new Hospital[0]);
