@@ -63,7 +63,7 @@ public class HospitalTable extends DataTable {
         Predicate<Partner> filter = Hospital.IsActive()
         .and(Hospital.CodeContains((String)getInputOf(0)))
         .and(Hospital.NameContains((String)getInputOf(1)))
-        .and(Hospital.AddressContains((String)getInputOf(1)));
+        .and(Hospital.AddressContains((String)getInputOf(2)));
         String[] newHeader = tableHeader.clone();
         Comparator<Partner> sorter = switch (selectedColumn) {
             case 0 -> Hospital.CodeComparator;

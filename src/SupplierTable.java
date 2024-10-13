@@ -68,7 +68,7 @@ public class SupplierTable extends DataTable {
         Predicate<Partner> filter = Supplier.IsActive()
         .and(Supplier.CodeContains((String)getInputOf(0)))
         .and(Supplier.NameContains((String)getInputOf(1)))
-        .and(Supplier.AddressContains((String)getInputOf(1)));
+        .and(Supplier.AddressContains((String)getInputOf(2)));
         String[] newHeader = tableHeader.clone();
         Comparator<Partner> sorter = switch (selectedColumn) {
             case 0 -> Supplier.CodeComparator;

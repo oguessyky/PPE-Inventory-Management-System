@@ -9,16 +9,16 @@ public class UserEdit extends EditForm {
         new String[] {
             "User ID :",
             "Name :",
+            "User Type :",
             "Password :",
-            "Confirm Password :",
-            "User Type :"
+            "Confirm Password :"
         },
         new JComponent[] {
             new JTextField(),
             new JTextField(),
+            new JComboBox<>(new User.Type[] { User.Type.Admin, User.Type.Staff }),
             new JPasswordField(),
-            new JPasswordField(),
-            new JComboBox<>(new User.Type[] { User.Type.Admin, User.Type.Staff })
+            new JPasswordField()
         });
         this.editType = EditType.Add;
     }
