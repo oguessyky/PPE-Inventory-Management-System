@@ -14,9 +14,9 @@ public class UserTable extends DataTable {
                 new JComboBox<>(new User.Type[] { null, User.Type.Admin, User.Type.Staff })
             },
             new JButton[] {
-                new JButton("Add Data"),
-                new JButton("Edit Data"),
-                new JButton("Delete Data")
+                new JButton("Add User"),
+                new JButton("Edit User"),
+                new JButton("Delete User")
             }
         );
 
@@ -53,9 +53,6 @@ public class UserTable extends DataTable {
                 updateTableData();
             }
         });
-
-        dataEditSetEnabled(false);
-        updateTableData();
     }
 
     @Override
@@ -93,7 +90,7 @@ public class UserTable extends DataTable {
         }
         sorter = sorter.thenComparing(User.IDComparator);
         userList = Records.getUserList(filter,sorter);
-        data = new Object[userList.size()][3];
+        data = new Object[userList.size()][tableHeader.length];
         User user;
         for (int idx = 0; idx < userList.size(); idx++) {
             user = userList.get(idx);

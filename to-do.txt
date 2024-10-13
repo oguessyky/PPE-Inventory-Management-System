@@ -1,6 +1,6 @@
 Requirements (as per assignment details)
 
-User
+User ✓
   - userID (pk) ✓
   - name ✓
   - password ✓
@@ -97,3 +97,9 @@ First time use: ✓
   - GL	Gloves ✓
   - GW	Gown ✓
   - SC	Shoe Covers ✓
+
+Inventory
+- item
+  - change supplier
+- transaction
+  -

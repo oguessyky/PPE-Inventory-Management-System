@@ -6,7 +6,7 @@ public class SupplierTable extends DataTable {
     public SupplierTable() {
         super("SUPPLIER MANAGEMENT",
             new String[] {"Supplier Code","Name","Address"},
-            new Class<?>[] {String.class,String.class,User.Type.class},
+            new Class<?>[] {String.class,String.class,String.class},
             new String[] {"Supplier Code :","Name :","Address :"},
             new JComponent[] {
                 new JTextField(),
@@ -14,9 +14,9 @@ public class SupplierTable extends DataTable {
                 new JTextField()
             },
             new JButton[] {
-                new JButton("Add Data"),
-                new JButton("Edit Data"),
-                new JButton("Delete Data")
+                new JButton("Add Supplier"),
+                new JButton("Edit Supplier"),
+                new JButton("Set Inactive")
             }
         );
 
@@ -40,13 +40,15 @@ public class SupplierTable extends DataTable {
         tableButtons[2].setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tableButtons[2].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[2].addActionListener((evt) -> {
-            supplierList.get(table.getSelectedRow()).setInactive();
-            Records.updateRecords();
-            updateTableData();
+            Supplier supplier = supplierList.get(table.getSelectedRow());
+            if (Records.getItemList(Item.WithSupplier(supplier)).isEmpty()) {
+                supplier.setInactive();
+                Records.updateRecords();
+                updateTableData();
+            } else {
+                Main.showError(this, "Supplier in use!\nPlease change item supplier.");
+            }
         });
-
-        dataEditSetEnabled(false);
-        updateTableData();
     }
 
     @Override
@@ -83,7 +85,7 @@ public class SupplierTable extends DataTable {
         }
         sorter = sorter.thenComparing(Supplier.CodeComparator);
         supplierList = Records.getSupplierList(filter,sorter);
-        data = new Object[supplierList.size()][3];
+        data = new Object[supplierList.size()][tableHeader.length];
         Supplier supplier;
         for (int idx = 0; idx < supplierList.size(); idx++) {
             supplier = supplierList.get(idx);
@@ -94,10 +96,6 @@ public class SupplierTable extends DataTable {
             };
         }
         tableModel.setDataVector(data, newHeader);
-    }
-    public static void main(String[] args) {
-        Records.readRecords();
-        new SupplierTable().setVisible(true);
     }
 
     ArrayList<Supplier> supplierList;

@@ -53,6 +53,7 @@ public class AdminMenu extends Menu {
         supplierManagement_menu.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 18)); // NOI18N
         supplierManagement_menu.setForeground(new java.awt.Color(255, 255, 255));
         supplierManagement_menu.setText("Supplier management");
+        supplierManagement_menu.addActionListener((evt) -> { Main.hideMenu(); Main.manage(Main.DataType.Supplier); });
 
         hospitalManagement_menu.setBackground(new java.awt.Color(0, 153, 153));
         hospitalManagement_menu.setFont(new java.awt.Font("Swis721 Cn BT", 1, 18)); // NOI18N

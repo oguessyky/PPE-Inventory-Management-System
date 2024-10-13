@@ -66,9 +66,11 @@ public abstract class Main {
                 menu = new AdminMenu();
             }
             case Staff -> {
-
+                menu = new AdminMenu();
+                // todo staff page
             }
         }
+        System.out.print(user);
         showMenu();
     }
 
@@ -82,7 +84,7 @@ public abstract class Main {
     public static void manage(DataType dataType) {
         dataTable = switch (dataType) {
             case User -> dataTable instanceof UserTable && dataTable.isDisplayable() ? dataTable : new UserTable();
-            case Supplier -> dataTable instanceof UserTable && dataTable.isDisplayable() ? dataTable : new HospitalTable();
+            case Supplier -> dataTable instanceof SupplierTable && dataTable.isDisplayable() ? dataTable : new SupplierTable();
             case Hospital -> dataTable instanceof HospitalTable && dataTable.isDisplayable() ? dataTable : new HospitalTable();
             default -> throw new AssertionError("Incompatible form type");
         };
@@ -97,7 +99,7 @@ public abstract class Main {
             case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit((Supplier)data);
             case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit((Hospital)data);
             case Item -> form instanceof ItemEdit && form.isDisplayable() ? form : new ItemEdit((Item)data);
-            default -> throw new AssertionError("Incompatible form type");
+            case Transaction -> form instanceof TransactionEdit && form.isDisplayable() ? form : new TransactionEdit((Transaction.Type)data);
         };
         form.setVisible(true);
     }

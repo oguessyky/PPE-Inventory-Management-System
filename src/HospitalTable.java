@@ -6,7 +6,7 @@ public class HospitalTable extends DataTable {
     public HospitalTable() {
         super("HOSPITAL MANAGEMENT",
             new String[] {"Hospital Code","Name","Address"},
-            new Class<?>[] {String.class,String.class,User.Type.class},
+            new Class<?>[] {String.class,String.class,String.class},
             new String[] {"Hospital Code :","Name :","Address :"},
             new JComponent[] {
                 new JTextField(),
@@ -14,9 +14,9 @@ public class HospitalTable extends DataTable {
                 new JTextField()
             },
             new JButton[] {
-                new JButton("Add Data"),
-                new JButton("Edit Data"),
-                new JButton("Delete Data")
+                new JButton("Add Hospital"),
+                new JButton("Edit Hospital"),
+                new JButton("Set Inactive")
             }
         );
 
@@ -44,9 +44,6 @@ public class HospitalTable extends DataTable {
             Records.updateRecords();
             updateTableData();
         });
-
-        dataEditSetEnabled(false);
-        updateTableData();
     }
 
     @Override
@@ -83,7 +80,7 @@ public class HospitalTable extends DataTable {
         }
         sorter = sorter.thenComparing(Hospital.CodeComparator);
         hospitalList = Records.getHospitalList(filter,sorter);
-        data = new Object[hospitalList.size()][3];
+        data = new Object[hospitalList.size()][tableHeader.length];
         Hospital hospital;
         for (int idx = 0; idx < hospitalList.size(); idx++) {
             hospital = hospitalList.get(idx);
@@ -95,10 +92,6 @@ public class HospitalTable extends DataTable {
         }
         tableModel.setDataVector(data, newHeader);
     }
-    public static void main(String[] args) {
-        Records.readRecords();
-        new HospitalTable().setVisible(true);
-    }
-
+    
     ArrayList<Hospital> hospitalList;
 }
