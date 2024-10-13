@@ -7,3 +7,4 @@
 o;asd;asd;Admin
 ada;asdasf;1;Admin
 asd;asd;a;Admin
+02;02;02;Staff
