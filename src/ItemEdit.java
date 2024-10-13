@@ -50,7 +50,7 @@ public class ItemEdit extends EditForm {
     @Override
     protected void exit() {
         this.dispose();
-        // todo link page
+        Main.manage(Main.DataType.Item);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ItemEdit extends EditForm {
         }
         this.dispose();
         if (editType != EditType.FirstRun) {
-            // todo link page
+            Main.manage(Main.DataType.Item);
         }
     }
 }

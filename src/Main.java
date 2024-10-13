@@ -71,7 +71,6 @@ public abstract class Main {
                 // todo staff page
             }
         }
-        System.out.print(user);
         showMenu();
     }
 

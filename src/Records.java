@@ -195,12 +195,8 @@ public abstract class Records {
     }
     public static ArrayList<Item> getItemList(Predicate<Item> filter, Comparator<Item> sorter) {
         ArrayList<Item> outputList = new ArrayList<>(itemList);
-        System.out.println("Filtering");
-        System.out.println(itemList);
         outputList.removeIf(Predicate.not(filter));
-        System.out.println("Sorting");
         outputList.sort(sorter);
-        System.out.println("Done");
         return outputList;
     }
 
