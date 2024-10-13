@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.function.Predicate;
 import javax.swing.*;
 public class TransactionTable extends DataTable {
@@ -65,7 +65,7 @@ public class TransactionTable extends DataTable {
 
         for (JButton button : tableButtons) {
             button.setBackground(new java.awt.Color(0, 51, 102));
-            button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+            button.setFont(new java.awt.Font("Segoe UI", 1, 12));
             button.setForeground(new java.awt.Color(255, 255, 255));
         }
 

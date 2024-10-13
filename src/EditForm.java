@@ -1,14 +1,4 @@
 import javax.swing.*;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author User
- */
 public abstract class EditForm extends JFrame {
 
     /**
@@ -39,7 +29,7 @@ public abstract class EditForm extends JFrame {
         backButton.addActionListener((evt) -> exit());
 
         confirmButton.setBackground(new java.awt.Color(0, 51, 102));
-        confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 12));
         confirmButton.setForeground(new java.awt.Color(255, 255, 255));
         confirmButton.setText("Confirm");
 
@@ -98,7 +88,7 @@ public abstract class EditForm extends JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         titleLabel.setBackground(new java.awt.Color(255, 255, 255));
-        titleLabel.setFont(new java.awt.Font("Swis721 Cn BT", 1, 48)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Swis721 Cn BT", 1, 48));
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText(title);
