@@ -33,22 +33,14 @@ public class HospitalTable extends DataTable {
         tableButtons[1].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[1].addActionListener((evt) -> {
             dispose();
-            Main.editHospital(Records.getHospital(
-                (String) tableModel.getDataVector()
-                    .get(table.getSelectedRow())
-                    .get(0)
-            ));
+            Main.editForm(Main.DataType.Hospital,hospitalList.get(table.getSelectedRow()));
         });
 
         tableButtons[2].setBackground(new java.awt.Color(153, 0, 51));
         tableButtons[2].setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tableButtons[2].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[2].addActionListener((evt) -> {
-            Records.getHospital(
-                (String) tableModel.getDataVector()
-                    .get(table.getSelectedRow())
-                    .get(0)
-            ).setInactive();
+            hospitalList.get(table.getSelectedRow()).setInactive();
             Records.updateRecords();
             updateTableData();
         });
@@ -90,8 +82,8 @@ public class HospitalTable extends DataTable {
             newHeader[selectedColumn] += " \u25BC";
         }
         sorter = sorter.thenComparing(Hospital.CodeComparator);
-        ArrayList<Hospital> hospitalList = Records.getHospitalList(filter,sorter);
-        Object[][] data = new Object[hospitalList.size()][3];
+        hospitalList = Records.getHospitalList(filter,sorter);
+        data = new Object[hospitalList.size()][3];
         Hospital hospital;
         for (int idx = 0; idx < hospitalList.size(); idx++) {
             hospital = hospitalList.get(idx);
@@ -107,4 +99,6 @@ public class HospitalTable extends DataTable {
         Records.readRecords();
         new HospitalTable().setVisible(true);
     }
+
+    ArrayList<Hospital> hospitalList;
 }

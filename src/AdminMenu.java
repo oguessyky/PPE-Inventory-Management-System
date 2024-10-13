@@ -126,7 +126,7 @@ public class AdminMenu extends Menu {
 
     private void userManagement_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagement_menuActionPerformed
         Main.hideMenu();
-        Main.manageUser();
+        Main.manage(Main.DataType.User);
     }//GEN-LAST:event_userManagement_menuActionPerformed
 
     private void userManagement_menuComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_userManagement_menuComponentHidden

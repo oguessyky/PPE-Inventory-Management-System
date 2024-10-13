@@ -72,7 +72,7 @@ public class UserEdit extends EditForm {
     @Override
     protected void exit() {
         this.dispose();
-        Main.manageUser();
+        Main.manage(Main.DataType.User);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class UserEdit extends EditForm {
                     user.setUserType(userType);
                     Records.updateRecords();
                     this.dispose();
-                    Main.manageUser();
+                    Main.manage(Main.DataType.User);
                 }
                 default -> {
                     String password = (String)getInputOf(3);
@@ -114,44 +114,11 @@ public class UserEdit extends EditForm {
                         Records.addUser(new User(userID, name, password, userType));
                         this.dispose();
                         if (editType != EditType.FirstRun) {
-                            Main.manageUser();
+                            Main.manage(Main.DataType.User);
                         }
                     }
                 }
             }
         }
     }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(update.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(update.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(update.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(update.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserEdit(true).setVisible(true);
-            }
-        });
-    }
-
 }

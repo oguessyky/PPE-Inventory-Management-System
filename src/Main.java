@@ -14,7 +14,6 @@ public abstract class Main {
     private static User currentUser;
     private static Menu menu;
     private static final loginGUI loginGUI = new loginGUI();
-    private static userManagement userManagement;
     private static EditForm form;
     private static DataTable dataTable;
 
@@ -90,24 +89,16 @@ public abstract class Main {
         dataTable.setVisible(true);
     }
 
-    public static void manageUser() {
-        userManagement = new userManagement();
-        userManagement.setVisible(true);
-    }
     public static User getUser() { return currentUser; }
 
-    public static void editUser(User user) {
-        form = form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit(user);
-        form.setVisible(true);
-    }
-
-    public static void editSupplier(Supplier supplier) {
-        form = form instanceof UserEdit && form.isDisplayable() ? form : new SupplierEdit(supplier);
-        form.setVisible(true);
-    }
-
-    public static void editHospital(Hospital hospital) {
-        form = form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit(hospital);
+    public static void editForm(DataType formType, Object data) {
+        form = switch (formType) {
+            case User -> form instanceof UserEdit && form.isDisplayable() ? form : new UserEdit((User)data);
+            case Supplier -> form instanceof SupplierEdit && form.isDisplayable() ? form : new SupplierEdit((Supplier)data);
+            case Hospital -> form instanceof HospitalEdit && form.isDisplayable() ? form : new HospitalEdit((Hospital)data);
+            case Item -> form instanceof ItemEdit && form.isDisplayable() ? form : new ItemEdit((Item)data);
+            default -> throw new AssertionError("Incompatible form type");
+        };
         form.setVisible(true);
     }
 

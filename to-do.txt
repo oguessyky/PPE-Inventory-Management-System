@@ -59,21 +59,21 @@ GUI to-do
 Login ✓
 
 Admin Page (inherit Staff Page)
-- User management
+- User management ✓
   - list (with filter & sort, default no filter order by name asc) ✓
   - add ✓
   - delete ✓
   - modify ✓
-- Supplier management
-  - list (with filter & sort, default non-deprecated order by supplier code asc)
+- Supplier management ✓
+  - list (with filter & sort, default non-deprecated order by supplier code asc) ✓
   - add ✓
   - modify ✓
-  - deprecate
-- Hospital management
-  - list (with filter & sort, default non-deprecated order by supplier code asc)
+  - deprecate ✓
+- Hospital management ✓
+  - list (with filter & sort, default non-deprecated order by hospital code asc) ✓
   - add ✓
   - modify ✓
-  - deprecate
+  - deprecate ✓
 - Inventory management
   - Change item supplier ✓
 

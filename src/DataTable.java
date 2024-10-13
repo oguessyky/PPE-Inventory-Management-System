@@ -6,8 +6,6 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
  /**
   *
@@ -25,7 +23,7 @@ public abstract class DataTable extends JFrame {
             throw new AssertionError("Number of labels does not match number of search fields");
         }
 
-        tableModel = new javax.swing.table.DefaultTableModel(new Object [][] {}, tableHeader) {
+        tableModel = new javax.swing.table.DefaultTableModel(data, tableHeader) {
             Class<?>[] types = fieldClasses;
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -120,7 +118,7 @@ public abstract class DataTable extends JFrame {
             label.setFont(new java.awt.Font("Segoe UI", 1, 12));
             searchForm.setLayer(label, JLayeredPane.DEFAULT_LAYER);
             parallelGroup = parallelGroup.addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(label, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                .addComponent(label, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(field, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE));
             sequentialGroup = sequentialGroup
@@ -231,58 +229,23 @@ public abstract class DataTable extends JFrame {
         }
     }
  
-     /**
-      * @param args the command line arguments
-      */
-     public static void main(String args[]) {
-         /* Set the Nimbus look and feel */
-         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-          */
-         Records.readRecords();
-         try {
-             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                 if ("Nimbus".equals(info.getName())) {
-                     UIManager.setLookAndFeel(info.getClassName());
-                     break;
-                 }
-             }
-         } catch (ClassNotFoundException ex) {
-             java.util.logging.Logger.getLogger(userManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (InstantiationException ex) {
-             java.util.logging.Logger.getLogger(userManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (IllegalAccessException ex) {
-             java.util.logging.Logger.getLogger(userManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (UnsupportedLookAndFeelException ex) {
-             java.util.logging.Logger.getLogger(userManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         }
-         //</editor-fold>
- 
-         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
-             public void run() {
-                 new UserTable().setVisible(true);
-             }
-         });
-     }
- 
-     // Variables declaration - do not modify//GEN-BEGIN:variables
-     protected JButton backButton;
-     protected JLabel titleLabel;
-     protected JLabel searchLabel;
-     protected JLayeredPane searchForm;
-     protected JPanel header;
-     protected JScrollPane scrollPane;
-     protected JTable table;
-     // End of variables declaration//GEN-END:variables
-     protected javax.swing.table.DefaultTableModel tableModel;
-     protected String[] tableHeader;
-     protected int selectedColumn = 0;
-     protected int lastSelectedColumn;
-     protected boolean orderASC = true;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected JButton backButton;
+    protected JLabel titleLabel;
+    protected JLabel searchLabel;
+    protected JLayeredPane searchForm;
+    protected JPanel header;
+    protected JScrollPane scrollPane;
+    protected JTable table;
+    // End of variables declaration//GEN-END:variables
+    protected javax.swing.table.DefaultTableModel tableModel;
+    protected String[] tableHeader;
+    protected int selectedColumn = 0;
+    protected int lastSelectedColumn;
+    protected boolean orderASC = true;
 
-     protected JComponent[] searchFields;
-     protected JButton[] tableButtons;
+    protected JComponent[] searchFields;
+    protected JButton[] tableButtons;
+    protected Object[][] data = new Object[][] {};
  }
  
