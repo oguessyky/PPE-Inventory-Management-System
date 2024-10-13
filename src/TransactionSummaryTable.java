@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.Map;
 import java.util.function.Predicate;
 import javax.swing.*;
 public class TransactionSummaryTable extends DataTable {
