@@ -181,5 +181,4 @@ public class TransactionTable extends DataTable {
     }
 
     ArrayList<Transaction> transactionList;
-    boolean viewSummary = false;
 }

@@ -1,7 +1,13 @@
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Transaction {
     /* attributes */
@@ -83,4 +89,86 @@ public class Transaction {
         return String.format("%s;%d;%s;%s;%d", item.getItemCode(), quantity, transactionType, partner.getPartnerCode(), date.getTime());
     }
 
+    public static class Summary {
+
+        private static final ArrayList<SummaryKey> summaryKeys = new ArrayList<>();
+        public static class SummaryKey {
+            private final Item item;
+            private final Partner partner;
+            public SummaryKey(Item item, Partner partner) {
+                this.item = item;
+                this.partner = partner;
+            }
+            public Item getItem() { return item; }
+            public Partner getPartner() { return partner; }
+        }
+
+        public static class SummaryContent {
+            private int totalQuantity, count;
+            public SummaryContent() {
+                totalQuantity = 0;
+                count = 0;
+            }
+            public SummaryContent(int totalQuantity, int count) {
+                this.totalQuantity = totalQuantity;
+                this.count = count;
+            }
+            public void add(int quantity) {
+                totalQuantity += quantity;
+                count++;
+            }
+            public int getTotalQuantity() { return totalQuantity; }
+            public double getAverageQuantity() { return totalQuantity/count; }
+            public int getCount() { return count; }
+        }
+
+        private static SummaryKey getSummaryKey(Item item, Partner partner) {
+            for (SummaryKey summaryKey : summaryKeys) {
+                if (summaryKey.item == item && summaryKey.partner == partner) return summaryKey;
+            }
+            SummaryKey summaryKey = new SummaryKey(item, partner);
+            summaryKeys.add(summaryKey);
+            return summaryKey;
+        }
+
+        private HashMap<SummaryKey,SummaryContent> summaryList = new HashMap<>();
+
+        public Summary(ArrayList<Transaction> transactionList) {
+            SummaryKey summaryKey;
+            for (Transaction transaction : transactionList) {
+                summaryKey = getSummaryKey(transaction.item, transaction.partner);
+                if (summaryList.containsKey(summaryKey)) {
+                    summaryList.get(summaryKey).add(transaction.quantity);
+                } else {
+                    summaryList.put(summaryKey, new SummaryContent(transaction.quantity,1));
+                }
+            }
+        }
+
+        public static final Comparator<SummaryContent> totalComparator = Comparator.comparing(SummaryContent::getTotalQuantity);
+        public static final Comparator<SummaryContent> averageComparator = Comparator.comparing(SummaryContent::getAverageQuantity);
+        public static final Comparator<SummaryContent> countComparator = Comparator.comparing(SummaryContent::getCount);
+
+        public Set<Map.Entry<SummaryKey,SummaryContent>> getSummaryList() {
+            return summaryList.entrySet();
+        }
+
+        public Set<Map.Entry<SummaryKey,SummaryContent>> getSummaryList(Comparator<SummaryContent> comparator) {
+            return summaryList.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(comparator))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new))
+                .entrySet();
+        }
+    }
+
+    public static void main(String[] args) {
+        Map<Object[],Integer> test = new HashMap<>();
+        String[] a = new String[] {"test"};
+        String[] b = new String[] {"test"};
+        
+        test.put(a,1);
+        test.put(b,2);
+        System.out.println(test);
+    }
 }
