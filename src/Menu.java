@@ -15,7 +15,7 @@ public class Menu extends JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
         Admin_H.setBackground(new java.awt.Color(255, 255, 255));
-        Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48)); // NOI18N
+        Admin_H.setFont(new java.awt.Font("Swis721 BlkCn BT", 0, 48));
         Admin_H.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

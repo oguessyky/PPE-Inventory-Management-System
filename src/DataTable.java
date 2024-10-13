@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
- /**
-  *
-  * @author User
-  */
 public abstract class DataTable extends JFrame {
 
     public DataTable(String title, String[] tableHeader, Class<?>[] fieldClasses, String[] searchLabels, JComponent[] searchFields, JButton[] tableButtons) {
@@ -64,12 +57,12 @@ public abstract class DataTable extends JFrame {
         header.setBackground(new java.awt.Color(0, 51, 102));
 
         titleLabel = new JLabel(title,SwingConstants.CENTER);
-        titleLabel.setFont(new java.awt.Font("Swis721 Cn BT", 1, 36)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Swis721 Cn BT", 1, 36));
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         backButton = new JButton("Back to Menu Page");
         backButton.setBackground(new java.awt.Color(0, 51, 102));
-        backButton.setFont(new java.awt.Font("Swis721 Cn BT", 1, 14)); // NOI18N
+        backButton.setFont(new java.awt.Font("Swis721 Cn BT", 1, 14));
         backButton.setForeground(new java.awt.Color(255, 255, 255));
         backButton.addActionListener((evt) -> {exit();});
 

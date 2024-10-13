@@ -21,7 +21,7 @@ public class UserTable extends DataTable {
         );
 
         tableButtons[0].setBackground(new java.awt.Color(0, 51, 102));
-        tableButtons[0].setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tableButtons[0].setFont(new java.awt.Font("Segoe UI", 1, 12));
         tableButtons[0].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[0].addActionListener((evt) -> {
             dispose();
@@ -29,7 +29,7 @@ public class UserTable extends DataTable {
         });
 
         tableButtons[1].setBackground(new java.awt.Color(0, 51, 102));
-        tableButtons[1].setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tableButtons[1].setFont(new java.awt.Font("Segoe UI", 1, 12));
         tableButtons[1].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[1].addActionListener((evt) -> {
             User user = userList.get(table.getSelectedRow());
@@ -42,7 +42,7 @@ public class UserTable extends DataTable {
         });
 
         tableButtons[2].setBackground(new java.awt.Color(153, 0, 51));
-        tableButtons[2].setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tableButtons[2].setFont(new java.awt.Font("Segoe UI", 1, 12));
         tableButtons[2].setForeground(new java.awt.Color(255, 255, 255));
         tableButtons[2].addActionListener((evt) -> {
             User user = userList.get(table.getSelectedRow());
