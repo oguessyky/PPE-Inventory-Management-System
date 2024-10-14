@@ -229,7 +229,6 @@ public abstract class DataTable extends JFrame {
         }
     }
  
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     protected JButton backButton;
     protected JLabel titleLabel;
     protected JLabel searchTitle;
@@ -237,13 +236,11 @@ public abstract class DataTable extends JFrame {
     protected JPanel header;
     protected JScrollPane scrollPane;
     protected JTable table;
-    // End of variables declaration//GEN-END:variables
     protected javax.swing.table.DefaultTableModel tableModel;
     protected String[] tableHeader;
     protected int selectedColumn = 0;
     protected int lastSelectedColumn;
     protected boolean orderASC = true;
-
     protected JLabel[] searchLabels;
     protected JComponent[] searchFields;
     protected JButton[] tableButtons;
