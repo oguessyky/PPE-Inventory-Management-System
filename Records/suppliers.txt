@@ -1,3 +1,5 @@
 APIIT;GONE;Active
 APU;ASIA PACIFIC UNI;Active
 MAYALA;AKAU;Active
+Samuel SDN BRD;Jalan samuel U16;Inactive
+How Yue SDN BRH;Jalan liew P17;Active
