@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.function.Predicate;
 import javax.swing.*;
 public class TransactionSummaryTable extends DataTable {
@@ -34,7 +34,7 @@ public class TransactionSummaryTable extends DataTable {
                 new JComboBox<>(new Transaction.Type[] { null, Transaction.Type.Received, Transaction.Type.Distributed }),
                 new JComboBox<Partner>(),
                 new JSpinner(new SpinnerDateModel(new Date(0), null, null, Calendar.DAY_OF_MONTH)),
-                new JSpinner(new SpinnerDateModel(new Date(Long.MAX_VALUE), null, null, Calendar.DAY_OF_MONTH))
+                new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH))
             },
             new JButton[] {
                 new JButton("View Stock"),

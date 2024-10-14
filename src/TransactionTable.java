@@ -41,7 +41,7 @@ public class TransactionTable extends DataTable {
                 new JComboBox<>(new Transaction.Type[] { null, Transaction.Type.Received, Transaction.Type.Distributed }),
                 new JComboBox<Partner>(),
                 new JSpinner(new SpinnerDateModel(new Date(0), null, null, Calendar.DAY_OF_MONTH)),
-                new JSpinner(new SpinnerDateModel(new Date(Long.MAX_VALUE), null, null, Calendar.DAY_OF_MONTH))
+                new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH))
             },
             new JButton[] {
                 new JButton("View Stock"),
