@@ -1,7 +1,7 @@
 import javax.swing.*;
 public class StaffMenu extends Menu {
     public StaffMenu() {
-        super("ADMIN MENU",
+        super("STAFF MENU",
         new JButton[] {
             new JButton("Inventory management"),
             new JButton("Update profile"),
