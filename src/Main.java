@@ -19,24 +19,7 @@ public abstract class Main {
     private static DataTable dataTable;
 
     public static void main(String[] args) {
-        // try (Scanner userInput = new Scanner(System.in)) {
-        //     String input;
-        //     do {
-        //         System.out.print("Input your gmail: ");
-        //         //input = userInput.findInLine("(?=.*Try)(?=.*test).*");
-        //         //input = userInput.findInLine("^Try.*test.*");
-        //         input = userInput.nextLine().trim();
-        //         if (!input.matches("^[\\w.-]+@gmail\\.com$")) {
-        //             System.err.println("Invalid email. Please try again.\n");
-        //         }
-        //     } while (!input.matches("^[\\w.-]+@gmail\\.com$"));
-        //     System.out.println("You entered: " + input);
-        // }
 
-        // int i = 0;
-        // do {
-        //     System.out.println("try: " + ++i);
-        // } while (i < 10);
         Records.readRecords();
         while (Records.getUserList(User.IsType(User.Type.Admin)).isEmpty()) {
             newForm(DataType.User,true);
@@ -56,8 +39,6 @@ public abstract class Main {
         }
 
         loginGUI.setVisible(true);
-
-        // initializeMenu(Records.getUser("01"));
     }
 
     public static void initializeMenu(User user) {
