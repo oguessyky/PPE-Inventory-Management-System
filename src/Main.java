@@ -14,7 +14,7 @@ public abstract class Main {
 
     private static User currentUser;
     private static Menu menu;
-    private static loginGUI loginGUI = new loginGUI();
+    private static Login login = new Login();
     private static EditForm form;
     private static DataTable dataTable;
 
@@ -38,7 +38,7 @@ public abstract class Main {
             }
         }
 
-        loginGUI.setVisible(true);
+        login.setVisible(true);
     }
 
     public static void initializeMenu(User user) {
@@ -128,8 +128,8 @@ public abstract class Main {
     public static void logout() {
         menu.dispose();
         currentUser = null;
-        loginGUI = new loginGUI();
-        loginGUI.setVisible(true);
+        login = new Login();
+        login.setVisible(true);
     }
 
     public static void showError(Component parentComponent,String errorMsg) {
