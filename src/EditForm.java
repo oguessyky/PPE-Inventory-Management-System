@@ -1,15 +1,11 @@
 import javax.swing.*;
 public abstract class EditForm extends JFrame {
 
-    /**
-     * Creates new form update
-     */
     public enum EditType {
         FirstRun,
         Add,
         Update
     }
-
 
     public EditForm(String title, String[] inputLabels, JComponent[] inputFields) {
         if (inputLabels.length != inputFields.length) {

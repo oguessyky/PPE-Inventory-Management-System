@@ -112,7 +112,11 @@ public class UserEdit extends EditForm {
     @Override
     protected void exit() {
         this.dispose();
-        Main.manage(Main.DataType.User);
+        if (editSelf) {
+            Main.showMenu();
+        } else {
+            Main.manage(Main.DataType.User);
+        }
     }
 
     @Override
