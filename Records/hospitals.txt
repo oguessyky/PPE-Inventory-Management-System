@@ -4,3 +4,5 @@ Sunway Medical Centre;5, Jalan Lagoon Selatan, Bandar Sunway, 47500 Subang Jaya,
 123;1234;Inactive
 12345;wwsf;Inactive
 89;fdf;Inactive
+Joe Han Hospital;Shah Alam;Active
+Jogn Hospital;John Street;Active

@@ -1,4 +1,4 @@
-HC;Head Cover;S002;80
+HC;Head Cover;S002;81
 FS;Face Shield;S003;100
 MS;Mask;S001;80
 GL;Gloves;S002;170
