@@ -18,9 +18,7 @@ public abstract class DataTable extends JFrame {
 
         tableModel = new javax.swing.table.DefaultTableModel(data, tableHeader) {
             Class<?>[] types = fieldClasses;
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
+            boolean[] canEdit = new boolean [tableHeader.length];
 
             @Override
             public Class<?> getColumnClass(int columnIndex) {

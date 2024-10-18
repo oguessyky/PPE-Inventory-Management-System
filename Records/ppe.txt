@@ -1,6 +1,6 @@
 HC;Head Cover;S002;80
 FS;Face Shield;S003;100
-MS;Mask;S001;100
+MS;Mask;S001;80
 GL;Gloves;S002;170
 GW;Gown;S002;100
 SC;Shoe Covers;S003;100
